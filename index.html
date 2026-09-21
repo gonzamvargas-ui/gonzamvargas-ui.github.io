@@ -38,8 +38,9 @@ nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
 nav ul{display:flex;gap:20px;list-style:none;overflow-x:auto;scrollbar-width:none}
 nav ul::-webkit-scrollbar{display:none}
-nav a{color:var(--muted);font-size:14px;font-weight:500;white-space:nowrap}
-nav a:hover{color:var(--accent);text-decoration:none}
+nav ul{gap:10px;min-width:0;padding:1px}
+nav a{display:inline-block;padding:6px 14px;border:1px solid var(--accent);border-radius:8px;color:var(--accent);font-size:14px;font-weight:500;white-space:nowrap}
+nav a:hover{background:var(--accent);color:var(--accent-text);text-decoration:none}
 #theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px;flex:none}
 
 header.hero{padding:72px 0 56px}
