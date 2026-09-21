@@ -38,14 +38,17 @@ nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,
 nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
 nav ul{display:flex;gap:20px;list-style:none;overflow-x:auto;scrollbar-width:none}
 nav ul::-webkit-scrollbar{display:none}
-nav ul{gap:10px;min-width:0;padding:1px}
-nav a{display:inline-block;padding:6px 14px;border:1px solid var(--accent);border-radius:8px;color:var(--accent);font-size:14px;font-weight:500;white-space:nowrap}
+nav ul{gap:8px;min-width:0;padding:1px}
+nav a{display:inline-block;padding:3px 10px;border:1px solid var(--accent);border-radius:6px;color:var(--accent);font-size:12px;font-weight:500;white-space:nowrap}
 nav a:hover{background:var(--accent);color:var(--accent-text);text-decoration:none}
+nav .tools{display:flex;gap:8px;flex:none}
+#lang{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;height:34px;padding:0 10px;cursor:pointer;display:flex;align-items:center;gap:6px;font:600 12px/1 Inter,system-ui,sans-serif;flex:none}
+#lang:hover,#theme:hover{border-color:var(--accent)}
 #theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px;flex:none}
 
 header.hero{padding:72px 0 56px}
 .hero .wrap{display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:center}
-.portrait{position:relative;margin:0;isolation:isolate}
+.portrait{position:relative;top:-1.5cm;margin:0;isolation:isolate}
 .portrait::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--accent);border-radius:20px;z-index:-1;opacity:.55}
 .portrait::after{content:"";position:absolute;inset:0;border-radius:20px;background:linear-gradient(to top,rgba(15,21,36,.35),transparent 35%);pointer-events:none}
 .portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%;border-radius:20px;box-shadow:0 20px 40px -12px rgba(15,21,36,.35)}
@@ -57,6 +60,7 @@ header.hero{padding:72px 0 56px}
 .btn.primary{background:var(--accent);color:var(--accent-text)}
 .btn.ghost{color:var(--accent)}
 .btn .wa{width:15px;height:15px;vertical-align:-2px;margin-right:7px}
+.btn .wa.orcid{width:19px;height:19px;vertical-align:-4px}
 .btn:hover{text-decoration:none;opacity:.88}
 
 section{padding:56px 0;border-top:1px solid var(--line)}
@@ -117,7 +121,10 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
       <li><a href="#distinciones">Distinciones</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
-    <button id="theme" aria-label="Cambiar tema" title="Cambiar tema">◐</button>
+    <div class="tools">
+      <button id="lang" aria-label="Read in English" title="Read in English"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>EN</span></button>
+      <button id="theme" aria-label="Cambiar tema" title="Cambiar tema">◐</button>
+    </div>
   </div>
 </nav>
 
@@ -128,6 +135,7 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
       <p class="lead">Cientista Político con experiencia en docencia uni&shy;ver&shy;si&shy;ta&shy;ria, inves&shy;ti&shy;ga&shy;ción apli&shy;ca&shy;da y for&shy;mu&shy;la&shy;ción de pro&shy;pues&shy;tas es&shy;tra&shy;té&shy;gi&shy;cas en go&shy;ber&shy;nan&shy;za, po&shy;lí&shy;ti&shy;ca ex&shy;te&shy;rior, de&shy;re&shy;cho del mar y coo&shy;pe&shy;ra&shy;ción in&shy;ter&shy;na&shy;cio&shy;nal.</p>
       <div class="btns">
         <a class="btn ghost" href="cv-gonzalo-martinez.pdf" download>Descargar CV (PDF)</a>
+        <a class="btn ghost" href="https://orcid.org/0009-0003-7025-4831" target="_blank" rel="noopener"><svg class="wa orcid" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><text x="12" y="16.6" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">iD</text></svg>ORCID</a>
       </div>
     </div>
     <figure class="portrait">
@@ -367,6 +375,51 @@ document.getElementById('y').textContent = new Date().getFullYear();
       : matchMedia('(prefers-color-scheme: dark)').matches;
     root.dataset.theme = dark ? 'light' : 'dark';
     try { localStorage.setItem('theme', root.dataset.theme); } catch(e){}
+  });
+})();
+
+(function(){
+  var T = {"Perfil": "Profile", "Experiencia": "Experience", "Formación": "Education", "Publicaciones": "Publications", "Distinciones": "Honors", "Contacto": "Contact", "Descargar CV (PDF)": "Download CV (PDF, Spanish)", "Cientista Político con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas en gobernanza, política exterior, derecho del mar y cooperación internacional.": "Political Scientist with experience in uni&shy;ver&shy;si&shy;ty teach&shy;ing, ap&shy;plied re&shy;search and the for&shy;mu&shy;la&shy;tion of stra&shy;te&shy;gic pro&shy;pos&shy;als in gov&shy;ern&shy;ance, for&shy;eign pol&shy;i&shy;cy, law of the sea and in&shy;ter&shy;na&shy;tion&shy;al co&shy;op&shy;er&shy;a&shy;tion.", "Perfil profesional": "Professional profile", "Cientista Político especializado en Relaciones Internacionales y Políticas Públicas, con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas. Su trayectoria integra gobernanza, política exterior, derecho del mar, sostenibilidad y cooperación internacional. Complementa su perfil con formación en inteligencia artificial aplicada a la creación de valor organizacional.": "Political Scientist specialized in International Relations and Public Policy, with experience in university teaching, applied research and the formulation of strategic proposals. A career that integrates governance, foreign policy, law of the sea, sustainability and international cooperation, complemented by training in artificial intelligence applied to organizational value creation.", "Áreas de especialización": "Areas of specialization", "Relaciones internacionales y política exterior": "International relations and foreign policy", "Gobernanza y análisis de políticas públicas": "Governance and public policy analysis", "Derecho del mar y gobernanza oceánica": "Law of the sea and ocean governance", "Sostenibilidad y Agenda 2030": "Sustainability and the 2030 Agenda", "IA aplicada a organizaciones": "AI applied to organizations", "Competencias clave": "Key skills", "Investigación y análisis estratégico": "Research and strategic analysis", "Formulación de propuestas y planes": "Drafting of proposals and plans", "Docencia universitaria": "University teaching", "Cooperación internacional": "International cooperation", "Síntesis de evidencia y elaboración de minutas": "Evidence synthesis and briefing notes", "Comunicación académica y ejecutiva": "Academic and executive communication", "Propuesta de valor": "Value proposition", "Perfil interdisciplinario orientado a conectar evidencia académica, análisis regulatorio y cooperación internacional con la formulación de soluciones para instituciones públicas, universidades, organizaciones de la sociedad civil y entidades vinculadas al desarrollo sostenible.": "Interdisciplinary profile focused on connecting academic evidence, regulatory analysis and international cooperation with the design of solutions for public institutions, universities, civil society organizations and entities linked to sustainable development.", "Experiencia profesional y académica": "Professional and academic experience", "Asistente Ejecutivo": "Executive Assistant", "Octubre 2025 – Actualidad": "October 2025 – Present", "Seguimiento legislativo de las iniciativas sobre agricultura; redacción de minutas y coordinación de seminarios.": "Legislative monitoring of agriculture-related initiatives; drafting of briefing notes and coordination of seminars.", "Profesor invitado · Pregrado en Ciencia Política": "Guest Professor · Undergraduate Program in Political Science", "Cátedra sobre Teoría de las Relaciones Internacionales.": "Lecture course on International Relations Theory.", "Docente de Magíster en Gobierno y Asuntos Públicos": "Lecturer, Master's in Government and Public Affairs", "Cátedra sobre política pública y la incidencia del conflicto social y político.": "Lecture course on public policy and the impact of social and political conflict.", "Colaborador en investigación y análisis de políticas públicas": "Research and Public Policy Analysis Collaborator", "Colaboración directa con la Dirección de la fundación y articulación con experiencia internacional vinculada a Mission Blue. Investigación sobre derecho del mar, gobernanza oceánica y creación de áreas marinas protegidas en Chile.": "Direct collaboration with the foundation's Directorate and liaison with international expertise linked to Mission Blue. Research on the law of the sea, ocean governance and the creation of marine protected areas in Chile.", "Práctica profesional de Maestría": "Master's Professional Internship", "Instituto de Estudios Internacionales · Universidad de Chile": "Institute of International Studies · Universidad de Chile", "Formulación de un Plan Estratégico de Internacionalización para universidades iberoamericanas vinculadas al Diplomado en Políticas Públicas Globales.": "Design of a Strategic Internationalization Plan for Ibero-American universities linked to the Diploma in Global Public Policy.", "Práctica profesional de Pregrado": "Undergraduate Professional Internship", "Revisión exhaustiva de literatura y elaboración de minutas sobre ONU-Hábitat I, II y III, en relación con la política urbano-habitacional de Chile.": "Comprehensive literature review and drafting of briefing notes on UN-Habitat I, II and III, in relation to Chile's urban and housing policy.", "Formación académica": "Education", "Magíster en Gobernanza de Riesgos y Recursos": "Master's in Risk and Resource Governance", "Universität Heidelberg · Alemania": "Universität Heidelberg · Germany", "Grado en Alemania · Aceptado para cursar en 2027": "Degree in Germany · Accepted to begin in 2027", "Máster en Cooperación Internacional y Políticas Públicas para la Agenda 2030": "Master's in International Cooperation and Public Policy for the 2030 Agenda", "Universidad Complutense de Madrid · España": "Universidad Complutense de Madrid · Spain", "Grado en España · 2021 – 2022 · Sobresaliente": "Degree in Spain · 2021 – 2022 · Sobresaliente (Outstanding)", "Cientista Político, especialización en Relaciones Internacionales": "Political Scientist, specializing in International Relations", "Grado en Chile · 2018 – 2022 · Magna Cum Laude": "Degree in Chile · 2018 – 2022 · Magna Cum Laude", "Licenciado en Ciencia Política y Relaciones Internacionales": "Bachelor's (Licenciatura) in Political Science and International Relations", "Bachiller en Ciencias Sociales": "Bachelor's (Bachiller) in Social Sciences", "Grado en Chile · 2018 – 2020": "Degree in Chile · 2018 – 2020", "Diplomados": "Postgraduate diplomas", "Nuevo Sistema de Cooperación Internacional": "New International Cooperation System", "Modelos de Desarrollo y Sostenibilidad": "Development Models and Sustainability", "Políticas Públicas para la Agenda 2030": "Public Policy for the 2030 Agenda", "Instituto de Estudios Internacionales · U. de Chile": "Institute of International Studies · U. de Chile", "Diploma de Extensión en Estudios Internacionales": "Extension Diploma in International Studies", "Cursos y talleres": "Courses and workshops", "Programa de Formación para el Fortalecimiento de las Capacidades en materia de Gobernanza de los Océanos": "Training Program for Strengthening Capacities in Ocean Governance", "Grupo Banco Mundial (PROBLUE) · 6 de mayo de 2024": "World Bank Group (PROBLUE) · May 6, 2024", "Curso de aprendizaje en línea (módulos básicos), con la Universidad de Melbourne, la División de Asuntos Oceánicos y Derecho del Mar de la ONU, la FAO, la Autoridad Internacional de los Fondos Marinos y el CDMO.": "Online learning course (basic modules), with the University of Melbourne, the UN Division for Ocean Affairs and the Law of the Sea, FAO, the International Seabed Authority and CDMO.", "Ver diploma": "View certificate", "Comercio agrícola internacional: medidas no arancelarias y Acuerdos de la OMC.": "International agricultural trade: non-tariff measures and WTO Agreements.", "Taller de Métodos Mixtos.": "Mixed Methods Workshop.", "Publicaciones e investigación": "Publications and research", "Publicaciones académicas": "Academic publications", "El rol de la diplomacia científica de Chile como socio de desarrollo de ASEAN: oportunidades para el posicionamiento del país como puente hacia el Sudeste Asiático": "The role of Chile's science diplomacy as a development partner of ASEAN: opportunities for positioning the country as a bridge to Southeast Asia", "Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile": "Journal Estudios Internacionales, Institute of International Studies, Universidad de Chile · In Spanish", "La política exterior azul: el proceso decisorio de la política pública de las áreas marinas protegidas de Chile, 2015-2023": "Blue foreign policy: the decision-making process of public policy on Chile's marine protected areas, 2015-2023", "Capítulo de libro en Ahora o nunca II: transformaciones ante el cambio climático en la era emergente, Universidad Externado de Colombia": "Book chapter in <em>Ahora o nunca II: transformaciones ante el cambio climático en la era emergente</em>, Universidad Externado de Colombia · In Spanish", "Ver capítulo": "View chapter", "La eficacia de la política exterior turquesa de Chile: ¿liderazgo efectivo o conceptual?": "The effectiveness of Chile's turquoise foreign policy: effective or conceptual leadership?", "Investigación y contribuciones": "Research and contributions", "Ministerio de Relaciones Exteriores de Chile": "Ministry of Foreign Affairs of Chile", "Adjudicatario del Concurso para el Desarrollo de Estudios de Política Exterior · 2024": "Awardee of the Competition for the Development of Foreign Policy Studies · 2024", "Investigación: La diplomacia científica de Chile como socio de desarrollo de ASEAN: desafíos y oportunidades para el país como puente hacia el Sudeste Asiático.": "Research: Chile's science diplomacy as a development partner of ASEAN: challenges and opportunities for the country as a bridge to Southeast Asia.", "Presentación académica · 2024": "Academic presentation · 2024", "Exposición del póster “O’Higgins Seamount”.": "Presentation of the poster “O’Higgins Seamount”.", "Ver póster": "View poster", "Cátedra Internacional Alianza Pacífico": "Pacific Alliance International Chair", "Asistente y ponente · Santiago de Cali, Colombia · 24 y 25 de noviembre de 2022": "Attendee and speaker · Santiago de Cali, Colombia · November 24–25, 2022", "VII Simposio Internacional sobre Relaciones entre América Latina y Asia Pacífico (136 horas). Organizado por la Universidad del Pacífico, la Universidad Iberoamericana, la Universidad Alberto Hurtado y la Pontificia Universidad Javeriana.": "VII International Symposium on Latin America–Asia Pacific Relations (136 hours). Organized by Universidad del Pacífico, Universidad Iberoamericana, Universidad Alberto Hurtado and Pontificia Universidad Javeriana.", "Distinciones y adscripciones": "Honors and affiliations", "Premio al Mérito Académico · 2023": "Academic Merit Award · 2023", "Primer lugar de la generación de pregrado en Ciencia Política y Relaciones Internacionales.": "First place in the undergraduate class in Political Science and International Relations.", "Adscripciones": "Affiliations", "Programa de formación para el fortalecimiento de capacidades en gobernanza de los océanos.": "Training program for strengthening capacities in ocean governance.", "Red Nacional de Early Career Ocean Professionals, vinculada al Decenio de las Ciencias Oceánicas de las Naciones Unidas 2021-2030.": "National network of Early Career Ocean Professionals, linked to the United Nations Decade of Ocean Science 2021-2030."};
+  var ATTRS = [["#theme", "aria-label", "Change theme"], ["#theme", "title", "Change theme"], [".portrait img", "alt", "Portrait of Gonzalo Martínez-Vargas"], [".logo-tile img[src*='heidelberg']", "title", "Universität Heidelberg · Germany"], [".logo-tile img[src*='complutense']", "title", "Universidad Complutense de Madrid · Spain"], [".logo-tile img[src*='uah']", "title", "Universidad Alberto Hurtado · Chile"]];
+  var SEL = 'h2,h3,ul.plain li,.tag,.org,.meta,a,p:not(.pub-link)';
+  function key(el){ return el.textContent.replace(/\u00ad/g,'').replace(/\s+/g,' ').trim(); }
+  var root = document.documentElement, btn = document.getElementById('lang');
+  var els = Array.prototype.filter.call(document.querySelectorAll(SEL), function(el){
+    var k = key(el);
+    if (Object.prototype.hasOwnProperty.call(T, k)) { el._k = k; return true; }
+    return false;
+  });
+  var metaDesc = document.querySelector('meta[name=description]');
+  var esTitle = document.title, esDesc = metaDesc ? metaDesc.content : '';
+  var enTitle = 'Gonzalo Martínez-Vargas · Political Scientist';
+  var enDesc = 'Political Scientist specialized in international relations and public policy: governance, foreign policy, law of the sea and international cooperation.';
+  function apply(lang){
+    var en = lang === 'en';
+    els.forEach(function(el){
+      if (en) { if (el.dataset.es === undefined) el.dataset.es = el.innerHTML; el.innerHTML = T[el._k]; }
+      else if (el.dataset.es !== undefined) el.innerHTML = el.dataset.es;
+    });
+    ATTRS.forEach(function(a){
+      var d = 'es' + a[1].replace(/-/g, '');
+      document.querySelectorAll(a[0]).forEach(function(el){
+        if (el.dataset[d] === undefined) el.dataset[d] = el.getAttribute(a[1]);
+        el.setAttribute(a[1], en ? a[2] : el.dataset[d]);
+      });
+    });
+    root.lang = en ? 'en' : 'es';
+    document.title = en ? enTitle : esTitle;
+    if (metaDesc) metaDesc.content = en ? enDesc : esDesc;
+    btn.querySelector('span').textContent = en ? 'ES' : 'EN';
+    btn.setAttribute('aria-label', en ? 'Leer en español' : 'Read in English');
+    btn.title = btn.getAttribute('aria-label');
+  }
+  var cur = 'es';
+  try { if (localStorage.getItem('lang') === 'en') cur = 'en'; } catch(e){}
+  if (cur === 'en') apply('en');
+  btn.addEventListener('click', function(){
+    cur = cur === 'en' ? 'es' : 'en';
+    apply(cur);
+    try { localStorage.setItem('lang', cur); } catch(e){}
   });
 })();
 </script>
