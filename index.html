@@ -11,17 +11,17 @@
 <style>
 :root{
   --bg:#faf7f0; --surface:#fff; --text:#1c2333; --muted:#5b6478; --line:#e4dfd2;
-  --accent:#1f3a5f; --accent-soft:#e8edf5; --accent-text:#fff;
+  --accent:#1f3a5f; --accent-soft:#e8edf5; --accent-text:#fff; --link:#a8482a;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#0f1524; --surface:#171f33; --text:#e8eaf0; --muted:#9aa3b8; --line:#28324a;
-    --accent:#8fb2e6; --accent-soft:#1d2946; --accent-text:#0f1524;
+    --accent:#8fb2e6; --accent-soft:#1d2946; --accent-text:#0f1524; --link:#f0a878;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0f1524; --surface:#171f33; --text:#e8eaf0; --muted:#9aa3b8; --line:#28324a;
-  --accent:#8fb2e6; --accent-soft:#1d2946; --accent-text:#0f1524;
+  --accent:#8fb2e6; --accent-soft:#1d2946; --accent-text:#0f1524; --link:#f0a878;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
@@ -88,6 +88,8 @@ h3.sub{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--
 .highlight p{margin:0}
 .highlight p.pub-link{margin-top:8px}
 .hl-label{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.pub-link a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.pub-link a:hover{text-decoration-thickness:2px}
 .card p.pub-link,.item p.pub-link{font-size:14px;font-weight:500;margin-top:10px}
 
 ul.plain{list-style:none}
