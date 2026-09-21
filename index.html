@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gonzalo Martínez Vargas · Cientista Político</title>
+<meta name="description" content="Cientista político especializado en relaciones internacionales y políticas públicas: gobernanza, política exterior, derecho del mar y cooperación internacional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f0; --surface:#fff; --text:#1c2333; --muted:#5b6478; --line:#e4dfd2;
+  --accent:#1f3a5f; --accent-soft:#e8edf5; --accent-text:#fff;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1524; --surface:#171f33; --text:#e8eaf0; --muted:#9aa3b8; --line:#28324a;
+    --accent:#8fb2e6; --accent-soft:#1d2946; --accent-text:#0f1524;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1524; --surface:#171f33; --text:#e8eaf0; --muted:#9aa3b8; --line:#28324a;
+  --accent:#8fb2e6; --accent-soft:#1d2946; --accent-text:#0f1524;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--text);font:400 16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.2}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+nav ul{display:flex;gap:20px;list-style:none;overflow-x:auto;scrollbar-width:none}
+nav ul::-webkit-scrollbar{display:none}
+nav a{color:var(--muted);font-size:14px;font-weight:500;white-space:nowrap}
+nav a:hover{color:var(--accent);text-decoration:none}
+#theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px;flex:none}
+
+header.hero{padding:72px 0 56px}
+.hero .wrap{display:grid;grid-template-columns:1fr 400px;gap:56px;align-items:center}
+.portrait{position:relative;margin:0;isolation:isolate}
+.portrait::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--accent);border-radius:20px;z-index:-1;opacity:.55}
+.portrait::after{content:"";position:absolute;inset:0;border-radius:20px;background:linear-gradient(to top,rgba(15,21,36,.35),transparent 35%);pointer-events:none}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:1504/1004;object-fit:cover;border-radius:20px;box-shadow:0 20px 40px -12px rgba(15,21,36,.35)}
+.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
+.hero h1{font-size:clamp(32px,6vw,52px);margin-bottom:16px}
+.hero p.lead{color:var(--muted);max-width:56ch;margin-bottom:24px;font-size:17px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;padding:10px 18px;border-radius:8px;font-weight:500;font-size:15px;border:1px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-text)}
+.btn.ghost{color:var(--accent)}
+.btn:hover{text-decoration:none;opacity:.88}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+section h2{font-size:28px;margin-bottom:28px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:var(--accent-soft);color:var(--accent);padding:5px 12px;border-radius:999px;font-size:14px;font-weight:500}
+h3.sub{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:Inter,sans-serif;font-weight:600;margin:0 0 12px}
+.value{margin-top:32px;padding:22px 24px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px}
+
+.item{position:relative;padding:0 0 28px 24px;border-left:2px solid var(--line);margin-left:6px}
+.item::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.item:last-child{padding-bottom:0}
+.item h3{font-size:19px}
+.item .org{color:var(--accent);font-weight:500}
+.item .meta{color:var(--muted);font-size:14px;margin:2px 0 6px}
+.item p{color:var(--text);font-size:15.5px}
+.item.future::before{background:var(--bg);border:2px solid var(--accent)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:14px}
+.card h3{font-size:17px;margin-bottom:4px}
+.card .meta{color:var(--muted);font-size:14px}
+.card p{font-size:15px;margin-top:6px}
+
+ul.plain{list-style:none}
+ul.plain li{padding:4px 0 4px 18px;position:relative;font-size:15.5px}
+ul.plain li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+#contacto{text-align:center}
+#contacto p{color:var(--muted);margin-bottom:24px}
+#contacto .btns{justify-content:center}
+footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+
+@media(max-width:700px){
+  .hero .wrap{grid-template-columns:1fr;gap:36px;text-align:center}
+  .portrait{order:-1;max-width:420px;margin:0 auto;width:calc(100% - 18px);right:9px}
+  .portrait::before{inset:14px -14px -14px 14px}
+  .hero .btns{justify-content:center}
+  .hero p.lead{margin-inline:auto}
+  .grid2{grid-template-columns:1fr}
+  header.hero{padding:44px 0 40px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <ul>
+      <li><a href="#perfil">Perfil</a></li>
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#formacion">Formación</a></li>
+      <li><a href="#publicaciones">Publicaciones</a></li>
+      <li><a href="#distinciones">Distinciones</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button id="theme" aria-label="Cambiar tema" title="Cambiar tema">◐</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Cientista Político · Relaciones Internacionales · Políticas Públicas</p>
+      <h1>Gonzalo Andrés Martínez Vargas</h1>
+      <p class="lead">Politólogo con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas en gobernanza, política exterior, derecho del mar y cooperación internacional.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:gonza.m.vargas@gmail.com">Escríbeme</a>
+        <a class="btn ghost" href="cv-gonzalo-martinez.pdf" download>Descargar CV (PDF)</a>
+      </div>
+    </div>
+    <figure class="portrait">
+      <img src="foto.jpg" alt="Retrato de Gonzalo Martínez Vargas">
+    </figure>
+  </div>
+</header>
+
+<main>
+<section id="perfil"><div class="wrap">
+  <h2>Perfil profesional</h2>
+  <p>Politólogo especializado en Relaciones Internacionales y Políticas Públicas, con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas. Su trayectoria integra gobernanza, política exterior, derecho del mar, sostenibilidad y cooperación internacional. Complementa su perfil con formación en inteligencia artificial aplicada a la creación de valor organizacional.</p>
+  <div class="grid2" style="margin-top:32px">
+    <div>
+      <h3 class="sub">Áreas de especialización</h3>
+      <div class="tags">
+        <span class="tag">Relaciones internacionales y política exterior</span>
+        <span class="tag">Gobernanza y análisis de políticas públicas</span>
+        <span class="tag">Derecho del mar y gobernanza oceánica</span>
+        <span class="tag">Sostenibilidad y Agenda 2030</span>
+        <span class="tag">IA aplicada a organizaciones</span>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub">Competencias clave</h3>
+      <ul class="plain">
+        <li>Investigación y análisis estratégico</li>
+        <li>Formulación de propuestas y planes</li>
+        <li>Docencia universitaria</li>
+        <li>Cooperación internacional</li>
+        <li>Síntesis de evidencia y elaboración de minutas</li>
+        <li>Comunicación académica y ejecutiva</li>
+      </ul>
+    </div>
+  </div>
+  <div class="value">
+    <h3 class="sub">Propuesta de valor</h3>
+    <p>Perfil interdisciplinario orientado a conectar evidencia académica, análisis regulatorio y cooperación internacional con la formulación de soluciones para instituciones públicas, universidades, organizaciones de la sociedad civil y entidades vinculadas al desarrollo sostenible.</p>
+  </div>
+</div></section>
+
+<section id="experiencia"><div class="wrap">
+  <h2>Experiencia profesional y académica</h2>
+  <div class="item">
+    <h3>Asistente Ejecutivo</h3>
+    <div class="org">Pensar Agro Chile</div>
+    <div class="meta">Octubre 2025 – Actualidad</div>
+    <p>Seguimiento legislativo de las iniciativas sobre agricultura; redacción de minutas y coordinación de seminarios.</p>
+  </div>
+  <div class="item">
+    <h3>Profesor invitado · Pregrado en Ciencia Política</h3>
+    <div class="org">Pontificia Universidad Católica de Chile</div>
+    <div class="meta">2025</div>
+    <p>Cátedra sobre Teoría de las Relaciones Internacionales.</p>
+  </div>
+  <div class="item">
+    <h3>Docente de Magíster en Gobierno y Asuntos Públicos</h3>
+    <div class="org">Universidad Central de Chile</div>
+    <div class="meta">2025</div>
+    <p>Cátedra sobre política pública y la incidencia del conflicto social y político.</p>
+  </div>
+  <div class="item">
+    <h3>Colaborador en investigación y análisis de políticas públicas</h3>
+    <div class="org">Fundación Patagonia Azul</div>
+    <div class="meta">2022 – 2024</div>
+    <p>Colaboración directa con la Dirección de la fundación y articulación con experiencia internacional vinculada a Mission Blue. Investigación sobre derecho del mar, gobernanza oceánica y creación de áreas marinas protegidas en Chile.</p>
+  </div>
+  <div class="item">
+    <h3>Práctica profesional de Maestría</h3>
+    <div class="org">Instituto de Estudios Internacionales · Universidad de Chile</div>
+    <div class="meta">2022</div>
+    <p>Formulación de un Plan Estratégico de Internacionalización para universidades iberoamericanas vinculadas al Diplomado en Políticas Públicas Globales.</p>
+  </div>
+  <div class="item">
+    <h3>Práctica profesional de Pregrado</h3>
+    <div class="org">Instituto de Estudios Internacionales · Universidad de Chile</div>
+    <div class="meta">2022</div>
+    <p>Revisión exhaustiva de literatura y elaboración de minutas sobre ONU-Hábitat I, II y III, en relación con la política urbano-habitacional de Chile.</p>
+  </div>
+</div></section>
+
+<section id="formacion"><div class="wrap">
+  <h2>Formación académica</h2>
+  <div class="item future">
+    <h3>Magíster en Gobernanza de Riesgos y Recursos</h3>
+    <div class="org">Universität Heidelberg</div>
+    <div class="meta">Aceptado para cursar en 2027</div>
+  </div>
+  <div class="item">
+    <h3>Máster en Cooperación Internacional y Políticas Públicas para la Agenda 2030</h3>
+    <div class="org">Universidad Complutense de Madrid</div>
+    <div class="meta">2021 – 2022 · Sobresaliente</div>
+  </div>
+  <div class="item">
+    <h3>Cientista Político, especialización en Relaciones Internacionales</h3>
+    <div class="org">Universidad Alberto Hurtado</div>
+    <div class="meta">2018 – 2022 · Magna Cum Laude</div>
+  </div>
+  <div class="item">
+    <h3>Licenciado en Ciencia Política y Relaciones Internacionales</h3>
+    <div class="org">Universidad Alberto Hurtado</div>
+    <div class="meta">2018 – 2022 · Magna Cum Laude</div>
+  </div>
+  <div class="item">
+    <h3>Bachiller en Ciencias Sociales</h3>
+    <div class="org">Universidad Alberto Hurtado</div>
+    <div class="meta">2018 – 2020</div>
+  </div>
+
+  <div class="grid2" style="margin-top:44px">
+    <div>
+      <h3 class="sub">Diplomados</h3>
+      <div class="card">
+        <h3>Universidad de Santiago de Chile</h3>
+        <div class="meta">2022</div>
+        <ul class="plain" style="margin-top:6px">
+          <li>Nuevo Sistema de Cooperación Internacional</li>
+          <li>Modelos de Desarrollo y Sostenibilidad</li>
+          <li>Políticas Públicas para la Agenda 2030</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Instituto de Estudios Internacionales · U. de Chile</h3>
+        <div class="meta">2019</div>
+        <p>Diploma de Extensión en Estudios Internacionales</p>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub">Cursos y talleres</h3>
+      <div class="card">
+        <h3>FAO e-Learning Academy</h3>
+        <p>Comercio agrícola internacional: medidas no arancelarias y Acuerdos de la OMC.</p>
+      </div>
+      <div class="card">
+        <h3>Pontificia Universidad Católica de Chile</h3>
+        <p>Taller de Métodos Mixtos.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="publicaciones"><div class="wrap">
+  <h2>Publicaciones e investigación</h2>
+  <h3 class="sub">Publicaciones académicas</h3>
+  <div class="card">
+    <h3>El rol de la diplomacia científica de Chile como socio de desarrollo de ASEAN: oportunidades para el posicionamiento del país como puente hacia el Sudeste Asiático</h3>
+    <div class="meta">Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile</div>
+  </div>
+  <div class="card">
+    <h3>La política exterior azul: el proceso decisorio de la política pública de las áreas marinas protegidas de Chile, 2015-2023</h3>
+    <div class="meta">Capítulo de libro en <em>Ahora o nunca II: transformaciones ante el cambio climático en la era emergente</em>, Universidad Externado de Colombia</div>
+  </div>
+  <div class="card">
+    <h3>La eficacia de la política exterior turquesa de Chile: ¿liderazgo efectivo o conceptual?</h3>
+    <div class="meta">Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile</div>
+  </div>
+
+  <h3 class="sub" style="margin-top:36px">Investigación y contribuciones</h3>
+  <div class="card">
+    <h3>Ministerio de Relaciones Exteriores de Chile</h3>
+    <div class="meta">Adjudicatario del Concurso para el Desarrollo de Estudios de Política Exterior · 2024</div>
+    <p>Investigación: La diplomacia científica de Chile como socio de desarrollo de ASEAN: desafíos y oportunidades para el país como puente hacia el Sudeste Asiático.</p>
+  </div>
+  <div class="card">
+    <h3>Intergovernmental Oceanographic Commission of UNESCO</h3>
+    <div class="meta">Presentación académica · 2024</div>
+    <p>Exposición del póster “O’Higgins Seamount”.</p>
+  </div>
+</div></section>
+
+<section id="distinciones"><div class="wrap">
+  <h2>Distinciones y adscripciones</h2>
+  <div class="grid2">
+    <div>
+      <h3 class="sub">Distinciones</h3>
+      <div class="card">
+        <h3>Premio al Mérito Académico · 2023</h3>
+        <div class="meta">Universidad Alberto Hurtado</div>
+        <p>Primer lugar de la generación de pregrado en Ciencia Política y Relaciones Internacionales.</p>
+      </div>
+    </div>
+    <div>
+      <h3 class="sub">Adscripciones</h3>
+      <div class="card">
+        <h3>World Bank Group · 2024</h3>
+        <p>Programa de formación para el fortalecimiento de capacidades en gobernanza de los océanos.</p>
+      </div>
+      <div class="card">
+        <h3>ECOP Chile · 2025</h3>
+        <p>Red Nacional de Early Career Ocean Professionals, vinculada al Decenio de las Ciencias Oceánicas de las Naciones Unidas 2021-2030.</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="contacto"><div class="wrap">
+  <h2>Contacto</h2>
+  <p>¿Colaboramos en investigación, docencia o proyectos de políticas públicas?</p>
+  <div class="btns">
+    <a class="btn primary" href="mailto:gonza.m.vargas@gmail.com">gonza.m.vargas@gmail.com</a>
+    <a class="btn ghost" href="tel:+56974577437">+56 9 7457 7437</a>
+    <a class="btn ghost" href="cv-gonzalo-martinez.pdf" download>Descargar CV</a>
+  </div>
+</div></section>
+</main>
+
+<footer>© <span id="y"></span> Gonzalo Andrés Martínez Vargas</footer>
+
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+(function(){
+  var root = document.documentElement, btn = document.getElementById('theme');
+  try { var s = localStorage.getItem('theme'); if (s) root.dataset.theme = s; } catch(e){}
+  btn.addEventListener('click', function(){
+    var dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', root.dataset.theme); } catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
