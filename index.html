@@ -44,11 +44,11 @@ nav a:hover{background:var(--accent);color:var(--accent-text);text-decoration:no
 #theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px;flex:none}
 
 header.hero{padding:72px 0 56px}
-.hero .wrap{display:grid;grid-template-columns:1fr 360px;gap:44px;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:center}
 .portrait{position:relative;margin:0;isolation:isolate}
 .portrait::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--accent);border-radius:20px;z-index:-1;opacity:.55}
 .portrait::after{content:"";position:absolute;inset:0;border-radius:20px;background:linear-gradient(to top,rgba(15,21,36,.35),transparent 35%);pointer-events:none}
-.portrait img{display:block;width:100%;height:auto;aspect-ratio:1504/1004;object-fit:cover;border-radius:20px;box-shadow:0 20px 40px -12px rgba(15,21,36,.35)}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%;border-radius:20px;box-shadow:0 20px 40px -12px rgba(15,21,36,.35)}
 .eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
 .hero h1{font-size:clamp(32px,6vw,52px);margin-bottom:16px;text-align:center}
 .hero p.lead{color:var(--muted);margin-bottom:24px;font-size:16px;line-height:1.6}
