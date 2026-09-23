@@ -14,135 +14,160 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#faf7f0; --surface:#fff; --text:#1c2333; --muted:#5b6478; --line:#e4dfd2;
-  --accent:#1f3a5f; --accent-soft:#e8edf5; --accent-text:#fff; --link:#a8482a;
+  --paper:#edf0ec; --card:#f7f9f6; --abyss:#0a2a33; --deep:#16505c; --muted:#5a6f73;
+  --shoal:#cbddd9; --line:#d3ddd8; --overprint:#a3175e; --on-deep:#f2f6f4;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0f1524; --surface:#171f33; --text:#e8eaf0; --muted:#9aa3b8; --line:#28324a;
-    --accent:#8fb2e6; --accent-soft:#1d2946; --accent-text:#0f1524; --link:#f0a878;
+    --paper:#071c22; --card:#0d2932; --abyss:#e2ebe8; --deep:#7fc2cf; --muted:#93aab0;
+    --shoal:#123640; --line:#173f4a; --overprint:#f08ab6; --on-deep:#071c22;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0f1524; --surface:#171f33; --text:#e8eaf0; --muted:#9aa3b8; --line:#28324a;
-  --accent:#8fb2e6; --accent-soft:#1d2946; --accent-text:#0f1524; --link:#f0a878;
+  --paper:#071c22; --card:#0d2932; --abyss:#e2ebe8; --deep:#7fc2cf; --muted:#93aab0;
+  --shoal:#123640; --line:#173f4a; --overprint:#f08ab6; --on-deep:#071c22;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{background:var(--bg);color:var(--text);font:400 16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{background:var(--paper);color:var(--abyss);font:400 17px/1.62 Spectral,Georgia,serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-weight:600;line-height:1.18;letter-spacing:-.012em}
 p,li{text-align:justify;hyphens:auto;-webkit-hyphens:auto;text-wrap:pretty}
-.card p.pub-link,.item p.pub-link{text-align:left;hyphens:none}
-#contacto p{text-align:center;hyphens:none}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.2}
-.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+a{color:var(--overprint);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+em{font-style:italic}
+:focus-visible{outline:2px solid var(--overprint);outline-offset:3px;border-radius:2px}
+.wrap{max-width:930px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:24px;top:10px;z-index:30;background:var(--card);border:1px solid var(--overprint);padding:8px 14px;border-radius:3px;font:500 14px Archivo,sans-serif;text-decoration:none}
 
-nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
-nav ul{display:flex;gap:20px;list-style:none;overflow-x:auto;scrollbar-width:none}
+/* ---------- chart bar ---------- */
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:58px}
+.brand{font:600 16px/1 Spectral,serif;color:var(--abyss);text-decoration:none;flex:none;letter-spacing:-.01em}
+.brand:hover{text-decoration:none;color:var(--deep)}
+nav ul{display:flex;gap:20px;list-style:none;overflow-x:auto;scrollbar-width:none;min-width:0;margin-left:auto}
 nav ul::-webkit-scrollbar{display:none}
-nav ul{gap:22px;min-width:0;padding:1px}
-nav a{display:inline-block;padding:6px 2px;border-bottom:2px solid transparent;color:var(--muted);font-size:13.5px;font-weight:500;white-space:nowrap;transition:color .15s,border-color .15s}
-nav a:hover{color:var(--accent);text-decoration:none;border-bottom-color:var(--line)}
-nav a.active{color:var(--accent);border-bottom-color:var(--accent)}
-nav .tools{display:flex;gap:8px;flex:none}
-#lang{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;height:34px;padding:0 10px;cursor:pointer;display:flex;align-items:center;gap:6px;font:600 12px/1 Inter,system-ui,sans-serif;flex:none}
-#lang:hover,#theme:hover{border-color:var(--accent)}
-#theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px;flex:none}
+nav ul a{display:block;padding:19px 0;color:var(--muted);font:500 13px/1 Archivo,system-ui,sans-serif;white-space:nowrap;text-decoration:none;box-shadow:inset 0 -2px 0 transparent;transition:color .15s,box-shadow .15s}
+nav ul a:hover{color:var(--abyss);text-decoration:none;box-shadow:inset 0 -2px 0 var(--line)}
+nav ul a.active{color:var(--overprint);box-shadow:inset 0 -2px 0 var(--overprint)}
+.tools{display:flex;gap:8px;flex:none}
+.tools button{background:none;border:1px solid var(--line);color:var(--abyss);border-radius:3px;height:32px;cursor:pointer;font:600 12px/1 Archivo,system-ui,sans-serif;display:flex;align-items:center;justify-content:center;gap:5px}
+#lang{padding:0 9px}
+#theme{width:32px;font-size:14px}
+.tools button:hover{border-color:var(--overprint);color:var(--overprint)}
 
-header.hero{padding:104px 0 72px}
-.hero .wrap{display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:center}
-.portrait{position:relative;top:-1.5cm;margin:0;isolation:isolate}
-.portrait::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:2px solid var(--accent);border-radius:20px;z-index:-1;opacity:.55}
-.portrait::after{content:"";position:absolute;inset:0;border-radius:20px;background:linear-gradient(to top,rgba(15,21,36,.35),transparent 35%);pointer-events:none}
-.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 50%;border-radius:20px;box-shadow:0 20px 40px -12px rgba(15,21,36,.35)}
-.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:12px}
-.hero h1{font-size:clamp(32px,6vw,52px);margin-bottom:16px;text-align:center}
-.hero p.lead{color:var(--muted);margin-bottom:24px;font-size:16px;line-height:1.6}
-.btns{display:flex;flex-wrap:wrap;gap:10px}
-.hero .btns{justify-content:center}
-.btn{display:inline-block;padding:10px 18px;border-radius:8px;font-weight:500;font-size:15px;border:1px solid var(--accent)}
-.btn.primary{background:var(--accent);color:var(--accent-text)}
-.btn.ghost{color:var(--accent)}
-.btn .wa{width:15px;height:15px;vertical-align:-2px;margin-right:7px}
-.btn .wa.orcid{width:19px;height:19px;vertical-align:-4px}
-.cform{max-width:560px;margin:0 auto;text-align:left;display:grid;gap:16px}
-.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.cform label{display:grid;gap:6px}
-.cform .fl{font-size:13px;font-weight:500;color:var(--muted)}
-.cform input,.cform textarea{width:100%;font:inherit;font-size:15px;color:var(--text);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
-.cform textarea{min-height:140px;resize:vertical}
-.cform input:focus,.cform textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
-.cform button{justify-self:start;cursor:pointer;font:inherit;font-weight:500;font-size:15px}
-.cform button[disabled]{opacity:.6;cursor:default}
-.form-status{min-height:1.4em;font-size:14px;margin:0;text-align:left}
-.form-status.ok{color:#2e7d4f}.form-status.err{color:#b3261e}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.btn:hover{text-decoration:none;opacity:.88}
+/* ---------- hero: a seamount as a chart plots it ---------- */
+.hero{position:relative;overflow:hidden;padding:88px 0 76px}
+.soundings{position:absolute;top:50%;left:50%;width:680px;height:680px;max-width:none;transform:translate(-50%,-50%);pointer-events:none;z-index:-1}
+.soundings path{fill:none;stroke:var(--deep);stroke-width:1;opacity:.36;vector-effect:non-scaling-stroke}
+.soundings path:nth-child(odd){opacity:.2}
+@media (prefers-reduced-motion:no-preference){
+  .soundings path{stroke-dasharray:2600;stroke-dashoffset:2600;animation:trace 2.2s cubic-bezier(.33,.9,.3,1) forwards}
+  .soundings path:nth-child(1){animation-delay:.05s}.soundings path:nth-child(2){animation-delay:.16s}
+  .soundings path:nth-child(3){animation-delay:.27s}.soundings path:nth-child(4){animation-delay:.38s}
+  .soundings path:nth-child(5){animation-delay:.49s}.soundings path:nth-child(6){animation-delay:.6s}
+  .soundings path:nth-child(7){animation-delay:.71s}
+}
+@keyframes trace{to{stroke-dashoffset:0}}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 360px;gap:52px;align-items:center}
+.hero h1{font-size:clamp(40px,6.6vw,62px);text-align:center;margin-bottom:22px}
+.hero h1 .nowrap{white-space:nowrap}
+.lead{color:var(--muted);font-size:17.5px;line-height:1.6;max-width:44ch;margin:0 auto 28px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid var(--deep);border-radius:3px;color:var(--deep);font:500 15px/1.2 Archivo,system-ui,sans-serif;text-decoration:none}
+.btn:hover{background:var(--deep);color:var(--on-deep);text-decoration:none}
+.btn.solid{background:var(--deep);color:var(--on-deep);cursor:pointer}
+.btn.solid:hover{opacity:.9}
+.btn svg{flex:none}
+.portrait{margin:0;position:relative}
+.portrait img{position:relative;z-index:1}
+.portrait img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:3px}
 
-section{padding:76px 0;border-top:1px solid var(--line)}
-section h2{font-size:34px;margin-bottom:34px}
-section h2::after{content:"";display:block;width:44px;height:3px;background:var(--link);border-radius:2px;margin-top:12px}
-#contacto h2::after{margin-inline:auto}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-.tags{display:flex;flex-wrap:wrap;gap:8px}
-.tag{background:var(--accent-soft);color:var(--accent);padding:5px 12px;border-radius:999px;font-size:14px;font-weight:500}
-h3.sub{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:Inter,sans-serif;font-weight:600;margin:0 0 12px}
-.value{margin-top:32px;padding:22px 24px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px}
+/* ---------- sections ---------- */
+section{padding:74px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(27px,4vw,33px);margin-bottom:30px}
+.prose{max-width:66ch;font-size:17.5px}
+.sub{font:500 14px/1.3 Archivo,system-ui,sans-serif;letter-spacing:.01em;color:var(--deep);margin:0 0 14px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:38px}
+.mt{margin-top:46px}
 
-.item{position:relative;padding:0 0 28px 24px;border-left:2px solid var(--line);margin-left:6px}
-.item::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
-.item:last-child{padding-bottom:0}
-.item h3{font-size:19px}
-.item .org{color:var(--accent);font-weight:500}
-.item .meta{color:var(--muted);font-size:14px;margin:2px 0 6px}
-.item p{color:var(--text);font-size:15.5px}
-.item.future::before{background:var(--bg);border:2px solid var(--accent)}
-
-.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:14px}
-.card h3{font-size:17px;margin-bottom:4px}
-.card .meta{color:var(--muted);font-size:14px}
-.card p{font-size:15px;margin-top:6px}
-.highlight{margin-top:12px;padding:12px 16px;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:6px}
-.highlight p{margin:0}
-.highlight p.pub-link{margin-top:8px}
-.hl-label{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
-.pub-link a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
-.pub-link a:hover{text-decoration-thickness:2px}
-.card p.pub-link,.item p.pub-link{font-size:14px;font-weight:500;margin-top:10px}
-
+/* areas of specialization: sounding lines, not pills */
 ul.plain{list-style:none}
-ul.plain li{padding:4px 0 4px 18px;position:relative;font-size:15.5px}
-ul.plain li::before{content:"";position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+ul.plain li{padding:7px 0;border-bottom:1px solid var(--line);text-align:left;font-size:16px;hyphens:none}
+ul.plain li:last-child{border-bottom:0}
+.tags{display:flex;flex-direction:column}
+.tag{padding:7px 0;border-bottom:1px solid var(--line);font-size:16px}
+.tag:last-child{border-bottom:0}
 
-#contacto{text-align:center}
-#contacto p{color:var(--muted);margin-bottom:24px}
-#contacto .btns{justify-content:center}
-.logo-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
-.logo-tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 18px;height:96px;display:flex;align-items:center;justify-content:center}
-.logo-tile img{height:100%;width:auto;max-width:210px;object-fit:contain;display:block}
-footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+.value{margin-top:46px;padding:22px 0 0;border-top:2px solid var(--deep)}
+.value p{max-width:66ch}
+.value .sub{border-bottom:0;padding-bottom:0}
 
-@media(max-width:700px){
-  .hero .wrap{grid-template-columns:1fr;gap:36px;text-align:center}
-  .portrait{order:-1;max-width:420px;margin:0 auto;width:calc(100% - 18px);right:9px}
-  .portrait::before{inset:14px -14px -14px 14px}
-  .hero .btns{justify-content:center}
-  .hero p.lead{margin-inline:auto}
-  .grid2{grid-template-columns:1fr}
-  .cform .row2{grid-template-columns:1fr}
-  header.hero{padding:44px 0 40px}
+/* ---------- entry: depth rail + body ---------- */
+.entry{display:grid;grid-template-columns:8.5rem 1fr;gap:28px;padding:22px 0;border-bottom:1px solid var(--line)}
+.entry:last-of-type{border-bottom:0}
+.grid2 .entry{grid-template-columns:1fr;gap:5px;padding:18px 0}
+.grid2 .entry .rail{order:-1;padding-top:0}
+.grid2 .rail::before{display:none}
+.grid2 .entry h3{font-size:18px}
+.rail{font:500 13px/1.45 Archivo,system-ui,sans-serif;color:var(--muted);letter-spacing:.01em;padding-top:4px;text-align:left;position:relative}
+.rail::before{content:"";position:absolute;left:-14px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--deep)}
+.entry.pending .rail::before{background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--deep)}
+.entry h3{font-size:19.5px;margin-bottom:3px}
+.org{color:var(--deep);font:500 15.5px/1.4 Archivo,system-ui,sans-serif}
+.meta{color:var(--muted);font:400 14px/1.45 Archivo,system-ui,sans-serif;margin-top:2px}
+.entry p{margin-top:9px;font-size:16.5px}
+.pub-link{margin-top:9px!important;text-align:left;hyphens:none;font:500 14.5px/1.5 Archivo,system-ui,sans-serif}
+
+/* chart overprint: the one annotation that matters */
+.highlight{margin-top:14px;padding:13px 0 13px 17px;border-left:2px solid var(--overprint)}
+.highlight p{margin-top:0;font-size:16.5px}
+.hl-label{display:block;font:600 12px/1 Archivo,system-ui,sans-serif;color:var(--overprint);margin-bottom:6px;letter-spacing:.02em}
+
+.logo-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.logo-tile{background:#fff;border:1px solid var(--line);border-radius:3px;padding:10px 20px;height:86px;display:flex;align-items:center;justify-content:center}
+.logo-tile img{height:100%;width:auto;max-width:200px;object-fit:contain;display:block}
+
+/* ---------- form ---------- */
+.cform{max-width:560px;display:grid;gap:18px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cform label{display:grid;gap:6px}
+.fl{font:500 13px/1 Archivo,system-ui,sans-serif;color:var(--muted)}
+.cform input,.cform textarea{width:100%;font:400 16px/1.5 Spectral,Georgia,serif;color:var(--abyss);background:var(--card);border:1px solid var(--line);border-radius:3px;padding:11px 13px}
+.cform textarea{min-height:150px;resize:vertical}
+.cform input:focus,.cform textarea:focus{outline:2px solid var(--deep);outline-offset:0;border-color:transparent}
+.cform button{justify-self:start;border:1px solid var(--deep)}
+.cform button[disabled]{opacity:.6;cursor:default}
+.form-status{min-height:1.4em;font:400 14.5px/1.5 Archivo,system-ui,sans-serif;text-align:left;hyphens:none}
+.form-status.ok{color:var(--deep)}
+.form-status.err{color:var(--overprint)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+footer{padding:26px 0 34px;color:var(--muted);font:400 13px/1.5 Archivo,system-ui,sans-serif;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+@media(max-width:820px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .portrait{order:-1;max-width:330px;margin:0 auto}
+  .soundings{width:470px;height:470px}
+  .grid2{grid-template-columns:1fr;gap:34px}
+  .row2{grid-template-columns:1fr}
+  .entry{grid-template-columns:1fr;gap:6px;padding:20px 0}
+  .rail::before{display:none}
+  .hero{padding:52px 0 56px}
+  section{padding:56px 0}
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#perfil">Saltar al contenido</a>
 
 <nav>
   <div class="wrap">
+    <a class="brand" href="#top">Martínez-Vargas</a>
     <ul>
       <li><a href="#perfil">Perfil</a></li>
       <li><a href="#experiencia">Experiencia</a></li>
@@ -152,23 +177,24 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
       <li><a href="#contacto">Contacto</a></li>
     </ul>
     <div class="tools">
-      <button id="lang" aria-label="Read in English" title="Read in English"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>EN</span></button>
+      <button id="lang" aria-label="Read in English" title="Read in English"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>EN</span></button>
       <button id="theme" aria-label="Cambiar tema" title="Cambiar tema">◐</button>
     </div>
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="wrap">
     <div>
-      <h1>Gonzalo <span style="white-space:nowrap">Martínez-Vargas</span></h1>
+      <h1>Gonzalo <span class="nowrap">Martínez-Vargas</span></h1>
       <p class="lead">Cientista Político con experiencia en docencia uni&shy;ver&shy;si&shy;ta&shy;ria, inves&shy;ti&shy;ga&shy;ción apli&shy;ca&shy;da y for&shy;mu&shy;la&shy;ción de pro&shy;pues&shy;tas es&shy;tra&shy;té&shy;gi&shy;cas en go&shy;ber&shy;nan&shy;za, po&shy;lí&shy;ti&shy;ca ex&shy;te&shy;rior, de&shy;re&shy;cho del mar y coo&shy;pe&shy;ra&shy;ción in&shy;ter&shy;na&shy;cio&shy;nal.</p>
-      <div class="btns">
-        <a id="cv" class="btn ghost" href="cv-gonzalo-martinez.pdf" download>Descargar CV</a>
-        <a class="btn ghost" href="https://orcid.org/0009-0003-7025-4831" target="_blank" rel="noopener"><svg class="wa orcid" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><text x="12" y="16.6" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">iD</text></svg>ORCID</a>
+      <div class="actions">
+        <a id="cv" class="btn" href="cv-gonzalo-martinez.pdf" download>Descargar CV</a>
+        <a class="btn" href="https://orcid.org/0009-0003-7025-4831" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><text x="12" y="16.6" font-family="Archivo,Arial,sans-serif" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle">iD</text></svg>ORCID</a>
       </div>
     </div>
     <figure class="portrait">
+      <svg class="soundings" viewBox="0 0 1000 1000" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><path style="stroke-dasharray:611;stroke-dashoffset:611" d="M586.0 500.0C587.0 501.1 587.9 502.3 588.8 503.5C589.7 504.7 590.6 505.9 591.4 507.2C592.1 508.5 592.9 509.8 593.5 511.1C594.2 512.4 594.7 513.7 595.2 515.1C595.7 516.4 596.0 517.8 596.3 519.2C596.6 520.5 596.8 521.9 596.8 523.2C596.9 524.6 596.8 525.9 596.7 527.3C596.5 528.6 596.2 529.9 595.9 531.1C595.5 532.4 595.0 533.7 594.5 534.8C593.9 536.0 593.2 537.2 592.5 538.3C591.8 539.4 591.0 540.5 590.1 541.5C589.2 542.6 588.3 543.5 587.3 544.5C586.3 545.4 585.3 546.3 584.2 547.2C583.1 548.0 582.0 548.8 580.9 549.6C579.8 550.4 578.7 551.1 577.5 551.8C576.4 552.5 575.3 553.2 574.1 553.9C573.0 554.5 571.9 555.2 570.8 555.8C569.7 556.4 568.6 557.0 567.5 557.7C566.4 558.3 565.4 558.9 564.3 559.5C563.3 560.1 562.3 560.7 561.3 561.3C560.3 561.9 559.3 562.5 558.3 563.1C557.4 563.7 556.4 564.3 555.5 564.9C554.5 565.5 553.6 566.2 552.6 566.8C551.7 567.4 550.8 568.0 549.8 568.6C548.9 569.2 547.9 569.8 547.0 570.3C546.0 570.9 545.1 571.5 544.1 572.0C543.2 572.5 542.2 573.1 541.2 573.6C540.2 574.1 539.2 574.5 538.2 574.9C537.2 575.4 536.1 575.8 535.1 576.1C534.1 576.5 533.0 576.8 532.0 577.1C530.9 577.4 529.8 577.7 528.7 577.9C527.7 578.1 526.6 578.3 525.5 578.5C524.4 578.6 523.3 578.7 522.2 578.8C521.1 578.9 520.1 579.0 519.0 579.0C517.9 579.1 516.8 579.1 515.7 579.1C514.7 579.1 513.6 579.1 512.5 579.1C511.5 579.1 510.4 579.0 509.4 579.0C508.3 579.0 507.3 579.0 506.2 578.9C505.2 578.9 504.1 578.9 503.1 578.9C502.1 578.9 501.0 578.9 500.0 578.9C499.0 578.9 497.9 578.9 496.9 578.9C495.9 578.9 494.8 578.9 493.8 578.9C492.7 579.0 491.7 579.0 490.6 579.0C489.6 579.0 488.5 579.1 487.5 579.1C486.4 579.1 485.3 579.1 484.3 579.1C483.2 579.1 482.1 579.1 481.0 579.0C479.9 579.0 478.9 578.9 477.8 578.8C476.7 578.7 475.6 578.6 474.5 578.5C473.4 578.3 472.3 578.1 471.3 577.9C470.2 577.7 469.1 577.4 468.0 577.1C467.0 576.8 465.9 576.5 464.9 576.1C463.9 575.8 462.8 575.4 461.8 574.9C460.8 574.5 459.8 574.1 458.8 573.6C457.8 573.1 456.8 572.5 455.9 572.0C454.9 571.5 454.0 570.9 453.0 570.3C452.1 569.8 451.1 569.2 450.2 568.6C449.2 568.0 448.3 567.4 447.4 566.8C446.4 566.2 445.5 565.5 444.5 564.9C443.6 564.3 442.6 563.7 441.7 563.1C440.7 562.5 439.7 561.9 438.7 561.3C437.7 560.7 436.7 560.1 435.7 559.5C434.6 558.9 433.6 558.3 432.5 557.7C431.4 557.0 430.3 556.4 429.2 555.8C428.1 555.2 427.0 554.5 425.9 553.9C424.7 553.2 423.6 552.5 422.5 551.8C421.3 551.1 420.2 550.4 419.1 549.6C418.0 548.8 416.9 548.0 415.8 547.2C414.7 546.3 413.7 545.4 412.7 544.5C411.7 543.5 410.8 542.6 409.9 541.5C409.0 540.5 408.2 539.4 407.5 538.3C406.8 537.2 406.1 536.0 405.5 534.8C405.0 533.7 404.5 532.4 404.1 531.1C403.8 529.9 403.5 528.6 403.3 527.3C403.2 525.9 403.1 524.6 403.2 523.2C403.2 521.9 403.4 520.5 403.7 519.2C404.0 517.8 404.3 516.4 404.8 515.1C405.3 513.7 405.8 512.4 406.5 511.1C407.1 509.8 407.9 508.5 408.6 507.2C409.4 505.9 410.3 504.7 411.2 503.5C412.1 502.3 413.0 501.1 414.0 500.0C415.0 498.9 416.0 497.8 416.9 496.7C417.9 495.7 418.9 494.7 419.9 493.7C420.8 492.7 421.8 491.8 422.7 490.9C423.6 489.9 424.5 489.0 425.3 488.2C426.1 487.3 426.9 486.4 427.6 485.6C428.3 484.8 429.0 483.9 429.6 483.1C430.1 482.3 430.7 481.4 431.1 480.6C431.6 479.7 432.0 478.9 432.3 478.0C432.6 477.1 432.9 476.2 433.1 475.3C433.3 474.4 433.5 473.5 433.6 472.5C433.7 471.5 433.8 470.5 433.9 469.5C434.0 468.5 434.0 467.5 434.0 466.4C434.1 465.3 434.1 464.2 434.1 463.1C434.2 462.0 434.2 460.9 434.3 459.7C434.3 458.6 434.4 457.4 434.5 456.3C434.6 455.1 434.8 453.9 435.0 452.8C435.2 451.6 435.4 450.5 435.7 449.3C436.0 448.2 436.3 447.1 436.7 446.0C437.1 444.9 437.5 443.8 438.0 442.7C438.5 441.7 439.1 440.6 439.7 439.7C440.3 438.7 440.9 437.7 441.6 436.8C442.3 435.9 443.0 435.0 443.7 434.1C444.5 433.3 445.3 432.5 446.1 431.7C447.0 430.9 447.8 430.1 448.7 429.4C449.6 428.7 450.5 428.0 451.4 427.3C452.4 426.6 453.3 426.0 454.3 425.4C455.2 424.7 456.2 424.1 457.2 423.5C458.1 422.9 459.1 422.3 460.1 421.7C461.1 421.1 462.1 420.5 463.1 419.9C464.1 419.4 465.1 418.8 466.1 418.2C467.2 417.7 468.2 417.1 469.2 416.5C470.2 416.0 471.3 415.4 472.3 414.9C473.4 414.4 474.5 413.8 475.5 413.3C476.6 412.8 477.7 412.3 478.8 411.8C479.9 411.3 481.0 410.8 482.2 410.4C483.3 410.0 484.5 409.6 485.6 409.2C486.8 408.8 488.0 408.5 489.1 408.2C490.3 407.9 491.5 407.7 492.7 407.5C493.9 407.3 495.1 407.1 496.3 407.0C497.6 406.9 498.8 406.9 500.0 406.9C501.2 406.9 502.4 406.9 503.7 407.0C504.9 407.1 506.1 407.3 507.3 407.5C508.5 407.7 509.7 407.9 510.9 408.2C512.0 408.5 513.2 408.8 514.4 409.2C515.5 409.6 516.7 410.0 517.8 410.4C519.0 410.8 520.1 411.3 521.2 411.8C522.3 412.3 523.4 412.8 524.5 413.3C525.5 413.8 526.6 414.4 527.7 414.9C528.7 415.4 529.8 416.0 530.8 416.5C531.8 417.1 532.8 417.7 533.9 418.2C534.9 418.8 535.9 419.4 536.9 419.9C537.9 420.5 538.9 421.1 539.9 421.7C540.9 422.3 541.9 422.9 542.8 423.5C543.8 424.1 544.8 424.7 545.7 425.4C546.7 426.0 547.6 426.6 548.6 427.3C549.5 428.0 550.4 428.7 551.3 429.4C552.2 430.1 553.0 430.9 553.9 431.7C554.7 432.5 555.5 433.3 556.3 434.1C557.0 435.0 557.7 435.9 558.4 436.8C559.1 437.7 559.7 438.7 560.3 439.7C560.9 440.6 561.5 441.7 562.0 442.7C562.5 443.8 562.9 444.9 563.3 446.0C563.7 447.1 564.0 448.2 564.3 449.3C564.6 450.5 564.8 451.6 565.0 452.8C565.2 453.9 565.4 455.1 565.5 456.3C565.6 457.4 565.7 458.6 565.7 459.7C565.8 460.9 565.8 462.0 565.9 463.1C565.9 464.2 565.9 465.3 566.0 466.4C566.0 467.5 566.0 468.5 566.1 469.5C566.2 470.5 566.3 471.5 566.4 472.5C566.5 473.5 566.7 474.4 566.9 475.3C567.1 476.2 567.4 477.1 567.7 478.0C568.0 478.9 568.4 479.7 568.9 480.6C569.3 481.4 569.9 482.3 570.4 483.1C571.0 483.9 571.7 484.8 572.4 485.6C573.1 486.4 573.9 487.3 574.7 488.2C575.5 489.0 576.4 489.9 577.3 490.9C578.2 491.8 579.2 492.7 580.1 493.7C581.1 494.7 582.1 495.7 583.1 496.7C584.0 497.8 585.0 498.9 586.0 500.0Z"/><path style="stroke-dasharray:983;stroke-dashoffset:983" d="M647.3 500.0C648.8 501.9 650.2 503.9 651.5 506.0C652.8 508.0 654.0 510.1 655.1 512.2C656.2 514.3 657.1 516.5 657.9 518.7C658.7 520.9 659.4 523.1 659.9 525.3C660.4 527.5 660.7 529.8 660.9 532.0C661.1 534.2 661.1 536.4 660.9 538.6C660.7 540.8 660.4 543.0 659.9 545.1C659.4 547.2 658.8 549.3 658.0 551.3C657.2 553.4 656.2 555.3 655.2 557.3C654.1 559.2 652.9 561.0 651.7 562.8C650.4 564.6 649.0 566.3 647.5 568.0C646.1 569.7 644.5 571.3 642.9 572.8C641.3 574.4 639.6 575.8 638.0 577.3C636.3 578.7 634.5 580.0 632.8 581.4C631.0 582.7 629.3 584.0 627.5 585.2C625.7 586.4 623.9 587.6 622.2 588.8C620.4 589.9 618.6 591.0 616.9 592.1C615.1 593.2 613.4 594.3 611.6 595.3C609.9 596.4 608.2 597.4 606.5 598.4C604.8 599.4 603.1 600.4 601.4 601.4C599.7 602.3 598.0 603.3 596.3 604.2C594.6 605.1 592.9 606.0 591.3 606.9C589.6 607.7 587.9 608.6 586.2 609.4C584.5 610.2 582.8 611.0 581.2 611.7C579.5 612.4 577.8 613.1 576.0 613.8C574.3 614.5 572.6 615.1 570.9 615.7C569.2 616.3 567.4 616.8 565.7 617.3C564.0 617.8 562.2 618.2 560.5 618.7C558.7 619.1 557.0 619.5 555.2 619.8C553.5 620.2 551.8 620.5 550.0 620.8C548.3 621.1 546.6 621.4 544.9 621.6C543.2 621.9 541.5 622.1 539.8 622.4C538.1 622.6 536.4 622.8 534.7 623.1C533.0 623.4 531.4 623.6 529.7 623.9C528.1 624.2 526.5 624.4 524.8 624.8C523.2 625.1 521.6 625.4 519.9 625.8C518.3 626.2 516.7 626.6 515.0 627.0C513.4 627.4 511.8 627.9 510.1 628.3C508.4 628.8 506.8 629.3 505.1 629.8C503.4 630.4 501.7 630.9 500.0 631.4C498.3 632.0 496.5 632.5 494.8 633.0C493.0 633.6 491.2 634.1 489.4 634.6C487.6 635.0 485.8 635.5 483.9 635.9C482.1 636.3 480.2 636.7 478.3 637.0C476.4 637.2 474.5 637.5 472.6 637.6C470.7 637.8 468.8 637.9 466.9 637.9C465.0 637.8 463.1 637.7 461.2 637.5C459.3 637.4 457.4 637.1 455.6 636.7C453.7 636.3 451.9 635.8 450.1 635.2C448.3 634.7 446.5 634.0 444.8 633.3C443.1 632.5 441.4 631.7 439.7 630.8C438.0 629.9 436.4 629.0 434.8 627.9C433.2 626.9 431.7 625.9 430.1 624.8C428.6 623.7 427.1 622.5 425.6 621.4C424.1 620.2 422.7 619.0 421.2 617.9C419.8 616.7 418.4 615.5 416.9 614.4C415.5 613.2 414.0 612.0 412.6 610.9C411.1 609.8 409.6 608.7 408.1 607.6C406.6 606.5 405.1 605.4 403.5 604.4C401.9 603.3 400.3 602.3 398.7 601.3C397.1 600.3 395.4 599.3 393.6 598.3C391.9 597.3 390.1 596.4 388.3 595.4C386.5 594.4 384.7 593.4 382.8 592.4C381.0 591.3 379.1 590.3 377.2 589.2C375.3 588.1 373.4 587.0 371.5 585.8C369.7 584.6 367.8 583.4 366.0 582.1C364.2 580.8 362.4 579.4 360.7 578.0C359.0 576.6 357.4 575.0 355.9 573.4C354.4 571.8 352.9 570.2 351.6 568.4C350.4 566.6 349.2 564.8 348.2 562.9C347.2 561.0 346.3 559.0 345.6 557.0C344.9 554.9 344.3 552.8 344.0 550.7C343.6 548.6 343.4 546.4 343.4 544.2C343.4 542.0 343.5 539.7 343.9 537.5C344.2 535.2 344.7 533.0 345.3 530.8C346.0 528.5 346.8 526.3 347.7 524.1C348.7 521.9 349.7 519.8 350.9 517.6C352.1 515.5 353.3 513.5 354.7 511.4C356.0 509.4 357.4 507.5 358.9 505.5C360.3 503.6 361.8 501.8 363.3 500.0C364.8 498.2 366.3 496.5 367.7 494.8C369.2 493.1 370.6 491.5 372.0 489.9C373.3 488.3 374.7 486.8 375.9 485.3C377.2 483.8 378.3 482.4 379.4 480.9C380.5 479.4 381.5 478.0 382.4 476.6C383.3 475.2 384.0 473.8 384.7 472.3C385.5 470.9 386.1 469.5 386.6 468.0C387.1 466.5 387.5 465.1 387.9 463.6C388.2 462.1 388.5 460.5 388.7 459.0C389.0 457.4 389.1 455.8 389.3 454.1C389.4 452.5 389.5 450.8 389.6 449.1C389.7 447.4 389.8 445.7 389.9 443.9C390.0 442.1 390.0 440.3 390.2 438.5C390.3 436.7 390.4 434.8 390.6 433.0C390.8 431.1 391.1 429.3 391.4 427.4C391.7 425.5 392.0 423.7 392.4 421.8C392.8 420.0 393.3 418.1 393.8 416.3C394.4 414.5 395.0 412.7 395.7 410.9C396.4 409.1 397.1 407.4 397.9 405.6C398.7 403.9 399.6 402.2 400.5 400.5C401.5 398.9 402.5 397.2 403.5 395.6C404.6 394.0 405.7 392.5 406.8 390.9C408.0 389.4 409.2 387.8 410.4 386.3C411.6 384.8 412.9 383.4 414.2 381.9C415.5 380.5 416.9 379.1 418.3 377.7C419.6 376.3 421.0 374.9 422.5 373.5C423.9 372.2 425.4 370.8 426.9 369.5C428.4 368.2 430.0 366.9 431.5 365.6C433.1 364.4 434.7 363.1 436.3 361.9C438.0 360.7 439.6 359.5 441.4 358.4C443.1 357.3 444.8 356.2 446.6 355.2C448.3 354.2 450.2 353.2 452.0 352.3C453.8 351.4 455.7 350.5 457.6 349.8C459.5 349.0 461.5 348.3 463.4 347.7C465.4 347.1 467.4 346.6 469.4 346.2C471.4 345.8 473.5 345.5 475.5 345.3C477.5 345.1 479.6 345.0 481.6 345.0C483.7 344.9 485.8 345.0 487.8 345.2C489.9 345.4 491.9 345.7 494.0 346.1C496.0 346.4 498.0 346.9 500.0 347.4C502.0 348.0 504.0 348.6 505.9 349.3C507.9 349.9 509.8 350.7 511.7 351.4C513.6 352.2 515.5 353.0 517.3 353.9C519.1 354.7 520.9 355.6 522.7 356.5C524.5 357.3 526.3 358.2 528.0 359.1C529.8 360.0 531.5 360.8 533.2 361.7C534.9 362.6 536.6 363.4 538.3 364.2C540.0 365.0 541.7 365.8 543.4 366.6C545.0 367.3 546.7 368.1 548.4 368.8C550.1 369.5 551.8 370.2 553.5 370.9C555.2 371.6 556.9 372.2 558.6 372.9C560.3 373.6 562.0 374.2 563.7 374.9C565.5 375.6 567.2 376.3 568.9 377.0C570.6 377.7 572.3 378.4 574.0 379.2C575.7 380.0 577.4 380.8 579.0 381.7C580.7 382.6 582.3 383.6 583.8 384.6C585.4 385.6 586.9 386.7 588.4 387.9C589.8 389.1 591.2 390.3 592.6 391.6C593.9 392.9 595.1 394.3 596.3 395.8C597.5 397.3 598.5 398.9 599.5 400.5C600.5 402.1 601.4 403.8 602.2 405.5C603.0 407.3 603.7 409.1 604.3 410.9C604.9 412.8 605.4 414.7 605.9 416.5C606.3 418.4 606.7 420.4 607.0 422.3C607.3 424.2 607.5 426.1 607.7 428.1C607.9 430.0 608.0 431.9 608.1 433.7C608.3 435.6 608.4 437.4 608.5 439.2C608.6 441.0 608.8 442.8 608.9 444.5C609.1 446.2 609.3 447.9 609.6 449.5C609.8 451.1 610.1 452.7 610.5 454.2C611.0 455.7 611.4 457.2 612.0 458.7C612.6 460.1 613.3 461.5 614.1 462.9C614.8 464.3 615.7 465.7 616.7 467.1C617.7 468.5 618.8 469.8 620.0 471.2C621.2 472.6 622.5 473.9 623.9 475.4C625.3 476.8 626.7 478.2 628.2 479.7C629.7 481.2 631.3 482.7 632.9 484.3C634.5 485.8 636.2 487.5 637.8 489.2C639.4 490.8 641.1 492.6 642.6 494.4C644.2 496.2 645.8 498.1 647.3 500.0Z"/><path style="stroke-dasharray:1390;stroke-dashoffset:1390" d="M716.5 500.0C718.2 502.8 719.8 505.7 721.2 508.7C722.6 511.6 723.8 514.7 724.8 517.7C725.9 520.7 726.7 523.8 727.4 526.9C728.0 530.0 728.5 533.1 728.8 536.2C729.0 539.3 729.0 542.5 728.9 545.5C728.7 548.6 728.4 551.7 727.8 554.7C727.3 557.7 726.5 560.7 725.6 563.6C724.7 566.6 723.6 569.4 722.4 572.3C721.1 575.1 719.7 577.8 718.2 580.5C716.7 583.2 715.0 585.8 713.3 588.4C711.6 590.9 709.7 593.4 707.8 595.8C705.8 598.2 703.8 600.5 701.7 602.8C699.6 605.0 697.5 607.2 695.3 609.4C693.1 611.5 690.9 613.6 688.6 615.6C686.3 617.6 684.0 619.5 681.7 621.4C679.4 623.3 677.0 625.1 674.6 626.9C672.3 628.6 669.9 630.4 667.4 632.0C665.0 633.6 662.6 635.2 660.1 636.8C657.7 638.3 655.2 639.7 652.7 641.1C650.2 642.5 647.6 643.8 645.1 645.1C642.6 646.4 640.0 647.5 637.4 648.6C634.8 649.8 632.2 650.8 629.6 651.8C627.0 652.7 624.4 653.6 621.7 654.4C619.1 655.2 616.4 655.9 613.8 656.6C611.1 657.3 608.5 657.8 605.8 658.4C603.2 658.9 600.5 659.3 597.9 659.8C595.3 660.2 592.7 660.5 590.1 660.9C587.5 661.2 585.0 661.5 582.4 661.8C579.9 662.1 577.4 662.3 575.0 662.6C572.5 662.9 570.1 663.2 567.7 663.5C565.4 663.9 563.0 664.2 560.7 664.6C558.4 665.0 556.2 665.5 554.0 666.0C551.7 666.6 549.5 667.2 547.3 667.9C545.2 668.6 543.0 669.3 540.9 670.2C538.7 671.0 536.6 672.0 534.4 673.0C532.3 674.0 530.1 675.2 527.9 676.3C525.7 677.5 523.6 678.8 521.3 680.1C519.1 681.4 516.8 682.8 514.5 684.2C512.2 685.6 509.8 687.1 507.4 688.5C505.0 689.9 502.5 691.4 500.0 692.7C497.5 694.1 494.9 695.5 492.3 696.8C489.6 698.1 487.0 699.3 484.2 700.4C481.5 701.5 478.7 702.6 475.9 703.4C473.1 704.3 470.3 705.0 467.4 705.6C464.6 706.2 461.7 706.6 458.9 706.8C456.0 707.1 453.1 707.1 450.3 707.0C447.5 706.9 444.6 706.6 441.9 706.1C439.1 705.6 436.4 705.0 433.7 704.1C431.0 703.3 428.4 702.3 425.8 701.1C423.2 700.0 420.7 698.7 418.3 697.2C415.9 695.8 413.5 694.3 411.2 692.6C408.9 691.0 406.7 689.3 404.5 687.5C402.3 685.7 400.2 683.8 398.1 682.0C396.0 680.1 394.0 678.2 392.0 676.3C390.0 674.4 388.0 672.5 386.0 670.6C384.0 668.7 382.1 666.9 380.1 665.1C378.1 663.3 376.1 661.5 374.0 659.8C372.0 658.1 369.9 656.4 367.8 654.8C365.7 653.2 363.5 651.6 361.3 650.1C359.0 648.6 356.7 647.1 354.4 645.6C352.0 644.1 349.6 642.7 347.2 641.3C344.7 639.8 342.2 638.4 339.7 636.9C337.1 635.5 334.6 634.0 332.0 632.5C329.4 630.9 326.8 629.4 324.2 627.7C321.6 626.1 319.1 624.4 316.6 622.6C314.1 620.8 311.6 618.9 309.2 616.9C306.9 614.9 304.6 612.8 302.5 610.6C300.4 608.4 298.3 606.1 296.5 603.7C294.7 601.3 293.0 598.7 291.5 596.1C290.0 593.5 288.7 590.8 287.6 588.0C286.6 585.2 285.7 582.2 285.1 579.3C284.4 576.3 284.0 573.3 283.8 570.2C283.6 567.2 283.7 564.1 283.9 560.9C284.1 557.8 284.6 554.7 285.3 551.6C285.9 548.4 286.8 545.3 287.8 542.2C288.8 539.1 290.0 536.1 291.3 533.1C292.6 530.1 294.0 527.1 295.5 524.2C297.0 521.3 298.7 518.5 300.3 515.7C302.0 513.0 303.7 510.3 305.4 507.6C307.1 505.0 308.9 502.5 310.5 500.0C312.2 497.5 313.9 495.1 315.5 492.8C317.1 490.4 318.6 488.1 320.1 485.8C321.5 483.6 322.9 481.4 324.2 479.2C325.5 477.0 326.7 474.9 327.8 472.7C328.8 470.6 329.8 468.5 330.7 466.3C331.6 464.2 332.3 462.1 333.0 459.9C333.7 457.8 334.3 455.6 334.9 453.4C335.4 451.2 335.8 449.0 336.2 446.8C336.6 444.6 337.0 442.3 337.3 440.0C337.6 437.7 337.9 435.3 338.2 433.0C338.5 430.6 338.8 428.2 339.0 425.8C339.3 423.4 339.6 420.9 340.0 418.5C340.3 416.0 340.7 413.5 341.1 411.0C341.5 408.5 341.9 406.0 342.4 403.4C342.9 400.9 343.5 398.4 344.1 395.8C344.7 393.3 345.4 390.8 346.2 388.2C346.9 385.7 347.7 383.2 348.6 380.6C349.5 378.1 350.4 375.6 351.4 373.1C352.4 370.6 353.4 368.0 354.5 365.5C355.6 363.0 356.8 360.5 358.0 358.0C359.2 355.5 360.5 353.0 361.8 350.5C363.1 348.0 364.5 345.5 365.9 343.0C367.4 340.5 368.8 338.0 370.4 335.6C371.9 333.1 373.5 330.6 375.1 328.1C376.8 325.7 378.5 323.2 380.3 320.8C382.0 318.4 383.9 315.9 385.8 313.6C387.7 311.2 389.7 308.9 391.7 306.6C393.8 304.4 395.9 302.2 398.1 300.0C400.3 297.9 402.6 295.9 405.0 293.9C407.4 292.0 409.8 290.1 412.4 288.4C414.9 286.7 417.5 285.1 420.2 283.7C422.9 282.3 425.7 281.0 428.5 279.9C431.3 278.8 434.2 277.9 437.1 277.1C440.1 276.4 443.1 275.8 446.1 275.4C449.1 275.0 452.2 274.8 455.2 274.8C458.3 274.8 461.4 275.0 464.4 275.3C467.5 275.7 470.6 276.2 473.6 276.9C476.6 277.6 479.7 278.5 482.6 279.5C485.6 280.4 488.6 281.6 491.5 282.8C494.4 284.0 497.2 285.4 500.0 286.7C502.8 288.1 505.5 289.6 508.2 291.1C510.9 292.6 513.5 294.2 516.1 295.7C518.7 297.2 521.2 298.7 523.6 300.2C526.1 301.7 528.5 303.2 530.9 304.6C533.4 306.0 535.7 307.4 538.1 308.6C540.4 309.9 542.7 311.1 545.1 312.2C547.4 313.4 549.7 314.4 552.1 315.4C554.4 316.3 556.8 317.2 559.1 318.0C561.5 318.8 563.9 319.5 566.3 320.2C568.7 320.9 571.2 321.5 573.7 322.2C576.1 322.8 578.6 323.3 581.2 323.9C583.7 324.5 586.2 325.1 588.8 325.7C591.4 326.4 593.9 327.0 596.5 327.7C599.0 328.5 601.6 329.2 604.1 330.1C606.6 331.0 609.1 331.9 611.6 333.0C614.0 334.1 616.4 335.3 618.7 336.6C621.0 337.9 623.2 339.4 625.4 341.0C627.5 342.5 629.5 344.3 631.5 346.1C633.4 347.9 635.2 349.9 636.8 352.0C638.5 354.0 640.1 356.2 641.5 358.5C642.9 360.8 644.2 363.2 645.3 365.7C646.5 368.1 647.5 370.7 648.4 373.3C649.3 375.8 650.1 378.5 650.8 381.1C651.5 383.7 652.1 386.4 652.7 389.1C653.2 391.7 653.7 394.4 654.1 397.0C654.6 399.6 655.0 402.2 655.4 404.8C655.8 407.3 656.2 409.8 656.7 412.2C657.2 414.7 657.7 417.0 658.2 419.4C658.8 421.7 659.5 423.9 660.2 426.1C661.0 428.3 661.8 430.5 662.7 432.6C663.7 434.7 664.8 436.7 666.0 438.8C667.2 440.8 668.5 442.8 669.9 444.8C671.4 446.8 673.0 448.7 674.6 450.7C676.3 452.7 678.1 454.7 680.0 456.8C681.9 458.8 683.9 460.9 686.0 463.0C688.0 465.1 690.1 467.3 692.3 469.5C694.4 471.8 696.6 474.1 698.7 476.5C700.8 478.9 703.0 481.3 705.1 483.9C707.1 486.4 709.2 489.0 711.1 491.7C713.0 494.4 714.9 497.2 716.5 500.0Z"/><path style="stroke-dasharray:1822;stroke-dashoffset:1822" d="M790.1 500.0C791.5 503.8 792.8 507.7 793.8 511.5C794.8 515.4 795.7 519.4 796.3 523.3C796.9 527.3 797.3 531.2 797.5 535.2C797.7 539.2 797.7 543.2 797.5 547.1C797.3 551.1 796.9 555.0 796.3 558.9C795.7 562.8 794.9 566.7 794.0 570.6C793.0 574.4 791.9 578.2 790.6 582.0C789.3 585.7 787.9 589.4 786.4 593.1C784.8 596.7 783.2 600.3 781.4 603.8C779.6 607.3 777.7 610.8 775.7 614.2C773.7 617.6 771.6 620.9 769.4 624.2C767.3 627.5 765.0 630.7 762.6 633.8C760.3 637.0 757.9 640.0 755.4 643.0C752.9 646.0 750.3 648.9 747.6 651.7C744.9 654.6 742.2 657.3 739.4 659.9C736.5 662.6 733.6 665.1 730.7 667.6C727.7 670.0 724.6 672.4 721.5 674.6C718.3 676.8 715.1 678.9 711.8 680.9C708.5 682.8 705.1 684.7 701.6 686.4C698.2 688.1 694.6 689.6 691.0 691.0C687.5 692.5 683.8 693.7 680.1 694.9C676.5 696.0 672.7 697.0 669.0 697.8C665.2 698.7 661.4 699.4 657.7 700.0C653.9 700.6 650.1 701.1 646.4 701.5C642.7 701.9 638.9 702.2 635.3 702.4C631.6 702.7 628.0 702.8 624.4 703.0C620.8 703.1 617.3 703.2 613.9 703.4C610.5 703.5 607.1 703.7 603.9 703.9C600.6 704.1 597.5 704.3 594.4 704.7C591.3 705.1 588.3 705.5 585.4 706.1C582.4 706.7 579.6 707.3 576.8 708.2C574.0 709.1 571.3 710.1 568.6 711.3C566.0 712.4 563.3 713.8 560.7 715.3C558.1 716.8 555.5 718.5 552.9 720.4C550.3 722.2 547.7 724.2 545.0 726.4C542.4 728.5 539.7 730.8 536.9 733.2C534.2 735.6 531.4 738.1 528.5 740.7C525.6 743.2 522.6 745.8 519.5 748.4C516.5 751.0 513.3 753.6 510.1 756.1C506.8 758.7 503.4 761.2 500.0 763.6C496.6 765.9 493.0 768.2 489.4 770.3C485.8 772.3 482.0 774.3 478.3 776.0C474.5 777.6 470.7 779.1 466.8 780.3C463.0 781.6 459.0 782.5 455.1 783.2C451.2 783.9 447.3 784.3 443.4 784.5C439.5 784.6 435.6 784.4 431.8 784.0C428.0 783.5 424.2 782.8 420.5 781.8C416.8 780.8 413.2 779.6 409.6 778.1C406.1 776.6 402.6 774.9 399.3 773.0C395.9 771.1 392.7 769.0 389.5 766.8C386.3 764.6 383.3 762.1 380.3 759.7C377.3 757.2 374.4 754.6 371.6 752.0C368.8 749.4 366.0 746.7 363.3 744.0C360.6 741.4 358.0 738.7 355.4 736.0C352.7 733.4 350.1 730.7 347.5 728.2C344.9 725.6 342.3 723.1 339.7 720.6C337.1 718.2 334.4 715.8 331.7 713.4C329.0 711.1 326.3 708.9 323.5 706.7C320.7 704.4 317.9 702.3 314.9 700.2C312.0 698.1 309.1 696.0 306.1 693.9C303.0 691.9 300.0 689.8 296.9 687.8C293.8 685.7 290.6 683.6 287.5 681.5C284.4 679.3 281.2 677.2 278.1 674.9C275.0 672.6 271.9 670.3 268.9 667.9C265.9 665.4 263.0 662.9 260.1 660.3C257.3 657.6 254.6 654.9 252.0 652.0C249.4 649.1 247.0 646.1 244.7 643.0C242.5 639.8 240.4 636.6 238.6 633.2C236.7 629.8 235.1 626.3 233.7 622.8C232.3 619.2 231.1 615.5 230.2 611.7C229.3 608.0 228.6 604.2 228.2 600.3C227.7 596.4 227.5 592.5 227.5 588.5C227.5 584.6 227.8 580.6 228.2 576.7C228.6 572.7 229.3 568.7 230.1 564.8C230.9 560.9 231.9 557.0 233.0 553.1C234.0 549.3 235.3 545.5 236.6 541.7C237.9 538.0 239.3 534.3 240.8 530.7C242.2 527.1 243.7 523.5 245.2 520.1C246.7 516.6 248.3 513.2 249.7 509.8C251.2 506.5 252.7 503.2 254.1 500.0C255.5 496.8 256.9 493.6 258.2 490.5C259.5 487.4 260.8 484.3 261.9 481.3C263.1 478.2 264.2 475.2 265.2 472.2C266.3 469.2 267.2 466.2 268.1 463.3C269.0 460.3 269.8 457.3 270.6 454.4C271.4 451.4 272.1 448.4 272.8 445.4C273.5 442.5 274.1 439.5 274.7 436.5C275.4 433.5 276.0 430.4 276.6 427.4C277.2 424.4 277.9 421.3 278.5 418.3C279.1 415.2 279.8 412.2 280.5 409.1C281.2 406.0 281.9 402.9 282.7 399.8C283.4 396.7 284.2 393.6 285.1 390.5C285.9 387.4 286.8 384.2 287.7 381.1C288.6 378.0 289.6 374.8 290.6 371.7C291.6 368.5 292.6 365.3 293.7 362.2C294.8 359.0 295.9 355.8 297.0 352.5C298.2 349.3 299.3 346.0 300.5 342.7C301.7 339.5 302.9 336.1 304.2 332.8C305.4 329.4 306.7 326.0 308.0 322.5C309.3 319.1 310.7 315.6 312.0 312.0C313.4 308.5 314.8 304.9 316.3 301.3C317.8 297.6 319.3 294.0 320.9 290.3C322.5 286.6 324.1 282.8 325.8 279.1C327.6 275.4 329.4 271.6 331.3 267.9C333.3 264.1 335.3 260.4 337.5 256.8C339.6 253.1 341.9 249.5 344.3 246.0C346.8 242.5 349.3 239.0 352.0 235.7C354.7 232.5 357.6 229.3 360.5 226.3C363.5 223.3 366.7 220.5 370.0 217.9C373.2 215.4 376.7 213.0 380.2 210.9C383.8 208.8 387.5 206.9 391.3 205.3C395.1 203.8 399.0 202.5 403.0 201.5C407.0 200.5 411.1 199.8 415.2 199.4C419.4 199.0 423.6 199.0 427.8 199.2C432.0 199.4 436.2 199.9 440.5 200.7C444.7 201.5 448.9 202.5 453.1 203.8C457.3 205.1 461.4 206.7 465.5 208.4C469.6 210.1 473.6 212.0 477.5 214.1C481.4 216.1 485.3 218.3 489.0 220.6C492.8 222.8 496.4 225.2 500.0 227.6C503.6 229.9 507.0 232.3 510.4 234.7C513.8 237.0 517.1 239.4 520.3 241.6C523.6 243.8 526.7 246.0 529.8 248.1C532.9 250.1 536.0 252.0 539.0 253.8C542.0 255.6 545.0 257.3 548.0 258.8C551.0 260.2 553.9 261.6 556.9 262.8C560.0 264.0 563.0 265.0 566.0 265.9C569.1 266.9 572.1 267.6 575.3 268.3C578.4 269.0 581.6 269.6 584.8 270.1C588.0 270.7 591.3 271.1 594.6 271.6C597.9 272.0 601.3 272.4 604.7 272.9C608.1 273.4 611.5 273.8 614.9 274.4C618.4 275.0 621.8 275.6 625.2 276.4C628.6 277.1 632.1 278.0 635.4 279.0C638.8 280.0 642.1 281.2 645.3 282.5C648.5 283.8 651.7 285.3 654.8 287.0C657.8 288.7 660.8 290.5 663.6 292.5C666.4 294.5 669.1 296.7 671.6 299.1C674.1 301.4 676.5 303.9 678.8 306.6C681.0 309.2 683.1 312.0 685.1 314.9C687.0 317.8 688.8 320.8 690.5 323.9C692.2 327.0 693.7 330.2 695.1 333.4C696.5 336.6 697.8 339.8 699.1 343.1C700.3 346.3 701.4 349.6 702.6 352.8C703.7 356.1 704.7 359.3 705.8 362.5C706.9 365.7 707.9 368.8 709.0 371.9C710.1 375.0 711.2 378.1 712.4 381.1C713.6 384.0 714.8 387.0 716.2 389.9C717.5 392.7 718.9 395.6 720.5 398.4C722.0 401.2 723.7 403.9 725.4 406.6C727.2 409.4 729.0 412.1 731.0 414.8C733.0 417.5 735.1 420.2 737.3 422.9C739.5 425.6 741.7 428.4 744.1 431.2C746.4 434.0 748.8 436.8 751.3 439.7C753.7 442.6 756.2 445.5 758.7 448.5C761.1 451.6 763.6 454.7 766.0 457.9C768.4 461.1 770.8 464.3 773.1 467.7C775.3 471.0 777.5 474.5 779.6 478.0C781.6 481.5 783.6 485.1 785.3 488.8C787.1 492.5 788.7 496.2 790.1 500.0Z"/><path style="stroke-dasharray:2272;stroke-dashoffset:2272" d="M863.6 500.0C864.3 504.8 864.8 509.6 865.0 514.3C865.3 519.1 865.4 524.0 865.3 528.8C865.2 533.6 865.0 538.4 864.6 543.1C864.1 547.9 863.5 552.7 862.8 557.5C862.1 562.2 861.3 567.0 860.3 571.7C859.3 576.4 858.2 581.1 857.0 585.7C855.8 590.4 854.5 595.0 853.1 599.6C851.7 604.2 850.2 608.8 848.6 613.3C847.1 617.8 845.4 622.3 843.6 626.8C841.8 631.2 840.0 635.6 838.0 640.0C836.0 644.4 834.0 648.7 831.8 653.0C829.6 657.2 827.3 661.4 824.9 665.5C822.5 669.7 819.9 673.7 817.2 677.6C814.5 681.6 811.6 685.4 808.6 689.1C805.6 692.8 802.5 696.4 799.1 699.9C795.8 703.3 792.3 706.6 788.6 709.7C785.0 712.8 781.1 715.7 777.1 718.5C773.1 721.2 769.0 723.7 764.7 726.0C760.4 728.3 755.9 730.5 751.3 732.3C746.8 734.2 742.1 735.9 737.3 737.3C732.5 738.7 727.6 739.9 722.7 740.9C717.8 742.0 712.8 742.8 707.9 743.4C702.9 744.0 697.9 744.5 693.0 744.8C688.1 745.1 683.1 745.3 678.3 745.4C673.5 745.5 668.7 745.5 664.1 745.5C659.4 745.6 654.9 745.5 650.4 745.5C646.0 745.5 641.7 745.5 637.6 745.7C633.5 745.9 629.4 746.1 625.6 746.5C621.7 746.9 618.0 747.4 614.4 748.2C610.8 748.9 607.4 749.9 604.0 751.1C600.6 752.3 597.4 753.7 594.2 755.4C591.1 757.1 588.0 759.1 584.9 761.3C581.8 763.5 578.8 766.0 575.8 768.7C572.8 771.5 569.7 774.4 566.6 777.6C563.6 780.8 560.4 784.2 557.2 787.7C554.0 791.2 550.7 794.9 547.3 798.6C543.9 802.4 540.4 806.3 536.7 810.1C533.0 813.9 529.2 817.8 525.3 821.6C521.4 825.3 517.3 829.1 513.1 832.6C508.9 836.2 504.5 839.6 500.0 842.8C495.5 845.9 490.9 848.9 486.2 851.5C481.5 854.1 476.7 856.5 471.8 858.5C466.9 860.5 461.9 862.2 457.0 863.5C452.0 864.8 447.0 865.8 442.0 866.3C437.0 866.9 432.0 867.0 427.0 866.8C422.1 866.6 417.2 866.0 412.4 865.1C407.5 864.2 402.8 862.8 398.1 861.2C393.5 859.7 388.9 857.7 384.5 855.5C380.0 853.4 375.7 850.9 371.5 848.3C367.3 845.6 363.2 842.8 359.3 839.8C355.3 836.8 351.4 833.6 347.7 830.4C343.9 827.2 340.3 823.9 336.7 820.5C333.1 817.2 329.6 813.8 326.1 810.4C322.7 807.1 319.3 803.7 315.9 800.4C312.5 797.1 309.2 793.8 305.9 790.5C302.5 787.3 299.2 784.1 295.9 781.0C292.5 777.8 289.2 774.8 285.8 771.8C282.4 768.7 279.0 765.8 275.5 762.8C272.1 759.9 268.6 757.0 265.1 754.1C261.6 751.2 258.1 748.3 254.6 745.4C251.1 742.4 247.6 739.5 244.1 736.5C240.7 733.5 237.2 730.5 233.8 727.4C230.4 724.2 227.0 721.1 223.8 717.7C220.5 714.4 217.4 711.1 214.3 707.5C211.3 704.0 208.4 700.4 205.7 696.7C202.9 692.9 200.3 689.1 197.9 685.1C195.6 681.1 193.3 677.0 191.4 672.9C189.4 668.7 187.6 664.4 186.0 660.0C184.4 655.6 183.1 651.1 181.9 646.6C180.8 642.1 179.9 637.5 179.2 632.9C178.5 628.3 178.0 623.6 177.6 618.9C177.3 614.3 177.2 609.6 177.2 604.9C177.2 600.2 177.4 595.5 177.7 590.9C178.0 586.3 178.4 581.6 178.9 577.1C179.4 572.5 180.1 568.0 180.7 563.5C181.4 559.0 182.1 554.6 182.8 550.2C183.6 545.9 184.3 541.5 185.1 537.3C185.9 533.0 186.6 528.8 187.4 524.6C188.1 520.4 188.9 516.3 189.6 512.2C190.3 508.1 191.0 504.0 191.6 500.0C192.3 496.0 192.9 492.0 193.6 488.0C194.2 484.0 194.8 480.0 195.4 476.0C196.0 472.1 196.6 468.1 197.2 464.2C197.8 460.2 198.4 456.3 199.1 452.3C199.8 448.4 200.5 444.5 201.2 440.6C201.9 436.6 202.7 432.7 203.6 428.8C204.4 424.9 205.4 421.1 206.3 417.2C207.3 413.3 208.4 409.5 209.5 405.6C210.7 401.8 211.9 398.0 213.1 394.2C214.4 390.4 215.8 386.6 217.2 382.8C218.6 379.1 220.0 375.3 221.5 371.6C223.0 367.9 224.6 364.2 226.1 360.5C227.7 356.7 229.3 353.0 230.9 349.3C232.5 345.5 234.1 341.8 235.7 338.0C237.2 334.2 238.8 330.4 240.4 326.5C241.9 322.6 243.5 318.7 245.0 314.7C246.5 310.7 247.9 306.6 249.4 302.4C250.8 298.3 252.3 294.0 253.7 289.6C255.1 285.2 256.5 280.8 257.9 276.2C259.3 271.6 260.7 266.9 262.1 262.1C263.6 257.3 265.0 252.4 266.6 247.5C268.1 242.5 269.7 237.5 271.5 232.4C273.2 227.3 275.0 222.2 277.0 217.1C278.9 212.0 281.0 206.8 283.3 201.8C285.6 196.7 288.1 191.7 290.7 186.8C293.4 181.9 296.2 177.1 299.3 172.5C302.4 168.0 305.7 163.5 309.2 159.4C312.8 155.2 316.5 151.3 320.5 147.7C324.5 144.1 328.7 140.8 333.1 137.9C337.5 135.0 342.1 132.4 346.8 130.2C351.6 128.1 356.6 126.3 361.6 125.0C366.7 123.6 372.0 122.7 377.2 122.2C382.5 121.7 388.0 121.6 393.4 122.0C398.8 122.3 404.3 123.1 409.8 124.2C415.2 125.3 420.7 126.8 426.1 128.6C431.5 130.4 436.9 132.5 442.2 134.9C447.4 137.3 452.6 140.0 457.7 142.7C462.8 145.5 467.8 148.6 472.6 151.7C477.4 154.7 482.1 158.0 486.7 161.1C491.3 164.3 495.7 167.6 500.0 170.8C504.3 173.9 508.5 177.1 512.6 180.0C516.7 183.0 520.6 185.9 524.5 188.6C528.4 191.3 532.2 193.9 536.0 196.2C539.7 198.5 543.4 200.7 547.1 202.6C550.8 204.5 554.4 206.2 558.1 207.7C561.8 209.2 565.5 210.5 569.2 211.6C573.0 212.8 576.7 213.7 580.5 214.5C584.3 215.3 588.2 215.9 592.1 216.4C596.1 217.0 600.1 217.4 604.1 217.8C608.2 218.2 612.3 218.5 616.4 218.9C620.6 219.3 624.8 219.7 629.0 220.2C633.2 220.6 637.5 221.1 641.8 221.8C646.0 222.5 650.3 223.2 654.5 224.1C658.7 225.1 662.9 226.1 667.0 227.4C671.2 228.7 675.3 230.1 679.2 231.8C683.2 233.4 687.1 235.3 690.9 237.3C694.6 239.4 698.3 241.6 701.8 244.0C705.3 246.4 708.7 249.1 711.9 251.8C715.2 254.6 718.3 257.6 721.3 260.6C724.3 263.7 727.1 266.9 729.8 270.2C732.5 273.5 735.1 276.9 737.6 280.4C740.1 283.8 742.5 287.4 744.8 290.9C747.1 294.5 749.3 298.1 751.5 301.7C753.7 305.3 755.9 308.9 758.0 312.6C760.2 316.2 762.3 319.8 764.4 323.3C766.6 326.9 768.7 330.5 770.9 334.0C773.1 337.5 775.4 341.0 777.7 344.5C780.0 348.0 782.3 351.4 784.8 354.9C787.2 358.4 789.7 361.8 792.2 365.3C794.8 368.8 797.4 372.2 800.0 375.7C802.7 379.2 805.4 382.8 808.1 386.3C810.8 389.9 813.6 393.5 816.3 397.2C819.0 400.9 821.8 404.7 824.5 408.5C827.1 412.3 829.8 416.2 832.4 420.2C834.9 424.2 837.4 428.3 839.8 432.4C842.2 436.6 844.4 440.8 846.6 445.1C848.7 449.4 850.7 453.8 852.4 458.3C854.2 462.7 855.9 467.3 857.3 471.9C858.8 476.5 860.0 481.1 861.1 485.8C862.1 490.5 863.0 495.2 863.6 500.0Z"/><path style="stroke-dasharray:2722;stroke-dashoffset:2722" d="M931.0 500.0C930.6 505.6 930.0 511.3 929.3 516.9C928.7 522.5 927.9 528.0 927.0 533.6C926.2 539.2 925.2 544.7 924.2 550.2C923.2 555.7 922.2 561.2 921.1 566.7C920.0 572.2 918.9 577.6 917.8 583.1C916.7 588.6 915.5 594.0 914.3 599.5C913.2 604.9 912.0 610.4 910.7 615.8C909.5 621.3 908.2 626.7 906.9 632.2C905.5 637.6 904.1 643.1 902.6 648.5C901.1 653.9 899.5 659.4 897.7 664.7C896.0 670.1 894.1 675.5 892.1 680.7C890.0 686.0 887.8 691.2 885.3 696.3C882.9 701.4 880.3 706.5 877.4 711.3C874.5 716.2 871.3 720.9 867.9 725.5C864.6 730.0 860.9 734.4 857.0 738.5C853.1 742.7 848.9 746.6 844.4 750.2C840.0 753.9 835.3 757.3 830.3 760.4C825.4 763.5 820.2 766.4 814.8 768.9C809.5 771.4 803.9 773.7 798.2 775.6C792.5 777.6 786.6 779.2 780.6 780.6C774.7 782.0 768.6 783.1 762.6 784.0C756.5 784.9 750.4 785.6 744.3 786.1C738.3 786.6 732.2 786.8 726.3 787.0C720.4 787.2 714.5 787.3 708.8 787.3C703.1 787.4 697.5 787.4 692.1 787.5C686.7 787.6 681.4 787.6 676.4 787.9C671.4 788.1 666.5 788.5 661.9 789.0C657.2 789.6 652.8 790.4 648.5 791.4C644.2 792.4 640.1 793.7 636.1 795.3C632.2 796.9 628.4 798.8 624.7 801.1C621.0 803.3 617.4 805.8 613.9 808.7C610.4 811.6 606.9 814.8 603.4 818.3C600.0 821.9 596.5 825.7 593.0 829.8C589.5 833.8 585.9 838.2 582.3 842.7C578.6 847.2 574.9 851.9 571.0 856.7C567.0 861.5 563.0 866.5 558.8 871.4C554.6 876.3 550.3 881.3 545.7 886.1C541.1 891.0 536.4 895.8 531.5 900.4C526.6 904.9 521.5 909.4 516.2 913.5C511.0 917.6 505.6 921.6 500.0 925.1C494.4 928.6 488.7 931.8 482.9 934.6C477.1 937.4 471.2 939.8 465.2 941.8C459.3 943.7 453.2 945.3 447.2 946.4C441.1 947.4 435.0 948.1 429.0 948.3C423.0 948.5 416.9 948.2 411.0 947.6C405.0 946.9 399.1 945.8 393.3 944.4C387.5 943.0 381.8 941.1 376.2 939.0C370.6 936.9 365.1 934.4 359.7 931.7C354.4 929.0 349.1 926.0 344.0 922.9C338.9 919.7 333.9 916.3 329.0 912.9C324.1 909.4 319.3 905.7 314.7 902.0C310.0 898.3 305.4 894.5 301.0 890.6C296.5 886.8 292.1 882.9 287.7 879.0C283.4 875.1 279.1 871.2 274.9 867.3C270.7 863.4 266.5 859.5 262.4 855.6C258.3 851.7 254.2 847.8 250.1 843.9C246.1 840.0 242.0 836.2 238.1 832.3C234.1 828.4 230.1 824.5 226.2 820.6C222.3 816.6 218.4 812.7 214.7 808.7C210.9 804.7 207.1 800.6 203.5 796.5C199.8 792.4 196.3 788.2 192.8 783.9C189.4 779.7 186.0 775.3 182.8 770.9C179.7 766.4 176.6 761.9 173.7 757.3C170.8 752.6 168.0 747.9 165.4 743.1C162.9 738.3 160.4 733.3 158.2 728.4C156.0 723.4 154.0 718.3 152.1 713.2C150.2 708.1 148.6 702.9 147.0 697.7C145.5 692.5 144.2 687.2 143.0 681.9C141.8 676.6 140.8 671.3 139.9 666.0C138.9 660.7 138.2 655.4 137.5 650.2C136.8 644.9 136.2 639.6 135.7 634.4C135.1 629.2 134.7 624.0 134.3 618.8C133.8 613.7 133.4 608.6 133.0 603.5C132.6 598.4 132.3 593.4 131.8 588.4C131.4 583.4 131.0 578.4 130.6 573.5C130.1 568.5 129.7 563.6 129.2 558.7C128.7 553.8 128.2 549.0 127.6 544.1C127.1 539.2 126.5 534.3 126.0 529.4C125.5 524.5 124.9 519.7 124.4 514.8C123.9 509.9 123.4 504.9 123.0 500.0C122.6 495.1 122.2 490.1 122.0 485.1C121.7 480.2 121.5 475.2 121.5 470.2C121.5 465.2 121.6 460.2 121.8 455.2C122.1 450.3 122.5 445.3 123.1 440.3C123.6 435.3 124.4 430.4 125.3 425.5C126.3 420.6 127.4 415.7 128.7 410.9C130.0 406.0 131.4 401.2 133.1 396.5C134.7 391.8 136.5 387.1 138.4 382.5C140.3 377.9 142.4 373.4 144.5 368.9C146.7 364.4 148.9 359.9 151.2 355.5C153.5 351.1 155.9 346.8 158.3 342.5C160.6 338.1 163.1 333.8 165.4 329.5C167.8 325.2 170.1 320.9 172.4 316.5C174.7 312.2 176.9 307.8 179.0 303.3C181.1 298.8 183.2 294.3 185.2 289.6C187.1 285.0 189.0 280.2 190.7 275.3C192.5 270.4 194.2 265.4 195.8 260.2C197.4 255.0 198.9 249.6 200.4 244.1C201.9 238.6 203.4 233.0 204.8 227.2C206.3 221.4 207.8 215.4 209.3 209.3C210.8 203.2 212.4 197.0 214.1 190.7C215.8 184.4 217.6 178.0 219.6 171.7C221.6 165.3 223.7 158.8 226.0 152.5C228.4 146.2 231.0 139.8 233.8 133.7C236.7 127.5 239.8 121.4 243.2 115.6C246.6 109.9 250.2 104.2 254.2 98.9C258.2 93.7 262.5 88.6 267.1 84.1C271.6 79.5 276.5 75.2 281.7 71.5C286.8 67.7 292.2 64.4 297.9 61.5C303.5 58.7 309.4 56.4 315.5 54.6C321.6 52.7 327.9 51.4 334.2 50.7C340.6 49.9 347.2 49.7 353.8 49.9C360.3 50.1 367.0 50.9 373.7 52.1C380.3 53.3 387.0 55.0 393.6 57.0C400.3 59.0 406.9 61.5 413.3 64.3C419.8 67.0 426.2 70.1 432.4 73.3C438.7 76.6 444.8 80.1 450.7 83.7C456.7 87.3 462.5 91.1 468.1 94.8C473.7 98.6 479.2 102.4 484.5 106.1C489.8 109.8 495.0 113.6 500.0 117.1C505.0 120.6 509.9 124.0 514.6 127.2C519.4 130.4 524.0 133.5 528.6 136.3C533.2 139.0 537.7 141.6 542.1 144.0C546.6 146.3 551.0 148.4 555.4 150.2C559.8 152.1 564.2 153.7 568.6 155.1C573.0 156.5 577.4 157.7 581.9 158.7C586.4 159.8 590.9 160.6 595.5 161.4C600.1 162.1 604.7 162.7 609.4 163.3C614.1 163.8 618.9 164.3 623.7 164.8C628.5 165.3 633.3 165.8 638.2 166.4C643.1 166.9 648.0 167.5 652.9 168.2C657.9 169.0 662.8 169.7 667.8 170.7C672.7 171.7 677.7 172.8 682.6 174.0C687.4 175.3 692.3 176.7 697.1 178.4C701.9 180.0 706.7 181.8 711.3 183.8C716.0 185.7 720.6 187.9 725.1 190.2C729.6 192.6 734.0 195.1 738.3 197.7C742.6 200.4 746.8 203.2 751.0 206.2C755.1 209.1 759.1 212.2 763.1 215.4C767.1 218.5 771.0 221.8 774.8 225.2C778.7 228.5 782.4 232.0 786.2 235.5C789.9 239.0 793.6 242.5 797.3 246.1C800.9 249.7 804.6 253.4 808.2 257.0C811.9 260.7 815.5 264.4 819.1 268.1C822.8 271.9 826.4 275.7 830.1 279.5C833.7 283.3 837.4 287.1 841.0 291.0C844.7 294.9 848.4 298.9 852.0 302.9C855.7 306.9 859.3 310.9 862.9 315.1C866.5 319.2 870.1 323.4 873.6 327.8C877.1 332.1 880.6 336.5 884.0 341.0C887.3 345.5 890.6 350.0 893.7 354.7C896.9 359.4 899.9 364.2 902.7 369.2C905.5 374.1 908.2 379.1 910.7 384.2C913.2 389.3 915.5 394.5 917.5 399.8C919.6 405.0 921.4 410.4 923.1 415.8C924.7 421.3 926.1 426.8 927.2 432.3C928.4 437.9 929.3 443.5 930.0 449.1C930.7 454.7 931.2 460.4 931.5 466.0C931.8 471.7 931.9 477.4 931.8 483.0C931.7 488.7 931.4 494.4 931.0 500.0Z"/><path style="stroke-dasharray:3136;stroke-dashoffset:3136" d="M984.8 500.0C983.3 506.3 981.7 512.6 980.2 518.9C978.7 525.1 977.2 531.3 975.7 537.4C974.3 543.6 972.9 549.7 971.6 555.8C970.2 561.9 969.0 568.0 967.8 574.1C966.7 580.2 965.6 586.3 964.6 592.4C963.6 598.5 962.7 604.7 961.8 610.9C960.8 617.0 960.0 623.2 959.1 629.5C958.2 635.7 957.4 642.0 956.4 648.3C955.4 654.6 954.4 660.9 953.2 667.2C952.0 673.5 950.8 679.8 949.3 686.1C947.8 692.3 946.1 698.6 944.1 704.7C942.1 710.9 940.0 717.0 937.4 722.9C934.9 728.8 932.1 734.6 928.9 740.2C925.7 745.8 922.3 751.2 918.4 756.4C914.5 761.5 910.3 766.5 905.8 771.1C901.2 775.8 896.3 780.1 891.1 784.2C885.9 788.2 880.4 791.9 874.6 795.3C868.8 798.7 862.7 801.7 856.4 804.4C850.2 807.1 843.6 809.5 837.0 811.6C830.4 813.6 823.6 815.3 816.8 816.8C810.0 818.3 803.1 819.5 796.3 820.5C789.4 821.5 782.5 822.2 775.8 822.9C769.1 823.6 762.4 824.1 755.9 824.6C749.4 825.1 743.0 825.5 736.8 826.0C730.7 826.5 724.7 826.9 718.9 827.6C713.1 828.3 707.6 829.0 702.3 830.1C696.9 831.1 691.8 832.3 686.9 833.8C682.0 835.3 677.3 837.0 672.8 839.2C668.3 841.3 664.0 843.7 659.7 846.5C655.5 849.3 651.4 852.4 647.4 855.9C643.4 859.3 639.5 863.2 635.5 867.3C631.5 871.4 627.7 875.9 623.7 880.6C619.7 885.3 615.7 890.4 611.5 895.5C607.4 900.7 603.2 906.1 598.8 911.5C594.4 917.0 589.9 922.6 585.2 928.2C580.4 933.7 575.6 939.4 570.5 944.8C565.4 950.3 560.1 955.8 554.6 960.9C549.1 966.1 543.3 971.2 537.5 975.9C531.6 980.6 525.5 985.1 519.2 989.2C513.0 993.3 506.5 997.1 500.0 1000.4C493.5 1003.7 486.8 1006.7 480.0 1009.2C473.2 1011.6 466.3 1013.7 459.4 1015.3C452.5 1016.9 445.6 1018.0 438.6 1018.7C431.7 1019.4 424.7 1019.7 417.7 1019.5C410.8 1019.3 403.9 1018.7 397.0 1017.7C390.2 1016.7 383.4 1015.3 376.7 1013.6C370.0 1011.9 363.4 1009.8 356.9 1007.5C350.4 1005.2 343.9 1002.5 337.6 999.7C331.3 996.8 325.2 993.7 319.1 990.4C313.0 987.1 307.0 983.6 301.2 980.0C295.3 976.4 289.6 972.6 283.9 968.7C278.3 964.9 272.7 960.8 267.3 956.8C261.8 952.7 256.5 948.5 251.3 944.2C246.0 939.9 240.9 935.5 235.8 931.1C230.8 926.6 225.9 922.1 221.1 917.5C216.2 912.9 211.5 908.2 206.9 903.4C202.4 898.6 197.9 893.7 193.6 888.7C189.3 883.7 185.1 878.6 181.1 873.4C177.1 868.2 173.2 862.9 169.5 857.5C165.9 852.1 162.4 846.6 159.1 840.9C155.8 835.3 152.6 829.6 149.7 823.8C146.8 818.0 144.1 812.1 141.6 806.1C139.0 800.2 136.7 794.1 134.6 788.1C132.4 782.0 130.5 775.9 128.7 769.7C127.0 763.6 125.4 757.4 123.9 751.3C122.4 745.2 121.1 739.0 119.9 732.9C118.7 726.8 117.6 720.8 116.5 714.8C115.5 708.8 114.5 702.8 113.5 696.9C112.5 691.1 111.6 685.3 110.6 679.5C109.6 673.8 108.6 668.2 107.5 662.6C106.4 657.0 105.2 651.5 103.9 646.1C102.7 640.7 101.3 635.3 99.8 630.0C98.4 624.7 96.8 619.4 95.1 614.2C93.4 609.0 91.5 603.8 89.6 598.5C87.7 593.3 85.7 588.1 83.6 582.8C81.5 577.6 79.3 572.3 77.1 567.0C74.9 561.7 72.6 556.3 70.4 550.8C68.2 545.4 66.0 539.9 63.9 534.3C61.8 528.7 59.8 523.1 57.9 517.4C56.1 511.6 54.3 505.8 52.8 500.0C51.3 494.2 50.0 488.2 48.9 482.3C47.9 476.3 47.1 470.3 46.6 464.3C46.1 458.3 45.9 452.3 46.0 446.3C46.1 440.3 46.6 434.2 47.3 428.3C48.1 422.4 49.2 416.4 50.5 410.6C51.9 404.8 53.6 399.0 55.5 393.3C57.4 387.6 59.7 382.0 62.1 376.5C64.5 371.0 67.2 365.6 70.0 360.3C72.8 355.0 75.8 349.8 78.8 344.6C81.9 339.5 85.1 334.4 88.2 329.4C91.4 324.4 94.6 319.5 97.7 314.6C100.9 309.6 104.0 304.7 107.0 299.8C110.0 294.8 113.0 289.9 115.8 284.8C118.5 279.8 121.2 274.7 123.7 269.4C126.3 264.2 128.6 258.9 130.9 253.3C133.1 247.8 135.2 242.2 137.1 236.4C139.1 230.5 140.9 224.5 142.7 218.3C144.4 212.1 146.1 205.7 147.7 199.1C149.4 192.6 151.0 185.8 152.6 178.9C154.3 172.0 156.0 164.9 157.8 157.8C159.6 150.7 161.5 143.4 163.6 136.1C165.7 128.8 168.0 121.5 170.5 114.2C173.1 107.0 175.8 99.7 178.9 92.7C182.0 85.6 185.3 78.6 189.0 72.0C192.7 65.3 196.7 58.8 201.1 52.7C205.5 46.6 210.2 40.7 215.3 35.4C220.4 30.0 225.8 25.0 231.5 20.6C237.3 16.2 243.4 12.2 249.7 8.7C256.0 5.3 262.7 2.4 269.5 0.1C276.4 -2.2 283.5 -4.0 290.7 -5.2C298.0 -6.4 305.4 -7.0 312.9 -7.1C320.4 -7.2 328.1 -6.7 335.7 -5.8C343.3 -4.8 351.0 -3.3 358.6 -1.5C366.2 0.3 373.8 2.7 381.2 5.3C388.7 7.9 396.1 10.9 403.3 14.1C410.6 17.2 417.7 20.8 424.7 24.3C431.6 27.9 438.4 31.7 445.0 35.4C451.6 39.1 458.1 43.0 464.3 46.8C470.6 50.5 476.7 54.3 482.6 57.9C488.6 61.5 494.3 65.1 500.0 68.4C505.7 71.7 511.2 74.9 516.6 77.9C522.0 80.8 527.3 83.6 532.6 86.2C537.8 88.7 543.0 91.1 548.1 93.2C553.3 95.3 558.4 97.2 563.5 99.0C568.6 100.7 573.7 102.2 578.8 103.6C584.0 105.0 589.1 106.2 594.3 107.4C599.4 108.5 604.6 109.5 609.8 110.5C615.1 111.5 620.3 112.4 625.6 113.3C631.0 114.2 636.3 115.1 641.7 116.0C647.0 117.0 652.4 117.9 657.8 119.0C663.2 120.0 668.7 121.1 674.1 122.4C679.5 123.6 685.0 124.9 690.4 126.3C695.8 127.8 701.2 129.3 706.6 131.0C712.0 132.7 717.4 134.5 722.8 136.4C728.2 138.3 733.5 140.4 738.8 142.5C744.2 144.7 749.5 147.0 754.8 149.4C760.1 151.7 765.3 154.2 770.6 156.8C775.9 159.3 781.1 162.0 786.4 164.7C791.6 167.4 796.9 170.2 802.2 173.1C807.5 176.0 812.8 178.9 818.1 181.9C823.4 184.9 828.7 188.0 834.1 191.2C839.5 194.3 844.9 197.5 850.3 200.9C855.7 204.2 861.1 207.6 866.5 211.1C871.9 214.6 877.4 218.2 882.7 221.9C888.1 225.7 893.5 229.5 898.8 233.5C904.1 237.5 909.4 241.6 914.6 246.0C919.7 250.3 924.8 254.7 929.7 259.4C934.6 264.0 939.4 268.8 943.9 273.8C948.5 278.8 952.9 284.0 957.0 289.3C961.1 294.7 964.9 300.2 968.5 305.9C972.1 311.6 975.4 317.5 978.3 323.5C981.3 329.5 983.9 335.7 986.2 342.0C988.5 348.3 990.5 354.7 992.1 361.2C993.7 367.7 994.9 374.3 995.9 381.0C996.8 387.6 997.4 394.3 997.7 401.0C997.9 407.7 997.9 414.5 997.6 421.2C997.3 427.9 996.7 434.6 996.0 441.3C995.2 448.0 994.2 454.6 993.0 461.2C991.9 467.8 990.6 474.3 989.2 480.8C987.8 487.2 986.3 493.7 984.8 500.0Z"/></svg>
       <img src="foto.jpg" alt="Retrato de Gonzalo Martínez-Vargas">
     </figure>
   </div>
@@ -177,8 +203,8 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
 <main>
 <section id="perfil"><div class="wrap">
   <h2>Perfil profesional</h2>
-  <p>Cientista Político especializado en Relaciones Internacionales y Políticas Públicas, con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas. Su trayectoria integra gobernanza, política exterior, derecho del mar, sostenibilidad y cooperación internacional. Complementa su perfil con formación en inteligencia artificial aplicada a la creación de valor organizacional.</p>
-  <div class="grid2" style="margin-top:32px">
+  <p class="prose">Cientista Político especializado en Relaciones Internacionales y Políticas Públicas, con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas. Su trayectoria integra gobernanza, política exterior, derecho del mar, sostenibilidad y cooperación internacional. Complementa su perfil con formación en inteligencia artificial aplicada a la creación de valor organizacional.</p>
+  <div class="grid2 mt">
     <div>
       <h3 class="sub">Áreas de especialización</h3>
       <div class="tags">
@@ -209,76 +235,103 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
 
 <section id="experiencia"><div class="wrap">
   <h2>Experiencia profesional y académica</h2>
-  <div class="item">
-    <h3>Asistente Ejecutivo</h3>
-    <div class="org">Pensar Agro Chile</div>
-    <div class="meta">Abril 2026 – Actualidad</div>
-    <p>Gestiono los asuntos públicos y la relación con autoridades sectoriales, incluida la Subsecretaría de Agricultura, y hago seguimiento legislativo de los proyectos de ley del sector agropecuario con una plataforma de monitoreo de desarrollo propio. Coordino iniciativas conjuntas y documentos de posición, elaboro minutas, informes ejecutivos y correspondencia institucional para el Congreso Nacional, e impulso la automatización de procesos internos con herramientas de inteligencia artificial.</p>
-  </div>
-  <div class="item">
-    <h3>Profesor invitado · Pregrado en Ciencia Política</h3>
-    <div class="org">Pontificia Universidad Católica de Chile</div>
-    <div class="meta">2025</div>
-    <p>Cátedra sobre Teoría de las Relaciones Internacionales.</p>
-  </div>
-  <div class="item">
-    <h3>Docente de Magíster en Gobierno y Asuntos Públicos</h3>
-    <div class="org">Universidad Central de Chile</div>
-    <div class="meta">2025</div>
-    <p>Cátedra sobre política pública y la incidencia del conflicto social y político.</p>
-  </div>
-  <div class="item">
-    <h3>Colaborador en investigación y análisis de políticas públicas</h3>
-    <div class="org">Fundación Patagonia Azul</div>
-    <div class="meta">2022 – 2024</div>
-    <p>Colaboración directa con la Dirección de la fundación y articulación con experiencia internacional vinculada a Mission Blue. Investigación sobre derecho del mar, gobernanza oceánica y creación de áreas marinas protegidas en Chile.</p>
-    <div class="highlight">
-      <span class="hl-label">Destacado</span>
-      <p>Lideré la redacción de una columna en el diario El País sobre el “<em>multilateralismo y la vocación oceánica de Chile</em>”, primer país en Sudamérica y el segundo en el mundo en ratificar el acuerdo marco del alta mar (enero de 2024).</p>
-      <p class="pub-link"><a href="https://elpais.com/chile/2024-01-19/chile-reafirma-el-multilateralismo-a-traves-de-su-vocacion-oceanica-al-ser-el-primer-pais-en-ratificar-el-acuerdo-marco-del-alta-mar.html" target="_blank" rel="noopener">Ver columna</a></p>
+  <article class="entry">
+    <div class="rail">Abril 2026 – Actualidad</div>
+    <div>
+      <h3>Asistente Ejecutivo</h3>
+      <div class="org">Pensar Agro Chile</div>
+      <p>Gestiono los asuntos públicos y la relación con autoridades sectoriales, incluida la Subsecretaría de Agricultura, y hago seguimiento legislativo de los proyectos de ley del sector agropecuario con una plataforma de monitoreo de desarrollo propio. Coordino iniciativas conjuntas y documentos de posición, elaboro minutas, informes ejecutivos y correspondencia institucional para el Congreso Nacional, e impulso la automatización de procesos internos con herramientas de inteligencia artificial.</p>
     </div>
-  </div>
-  <div class="item">
-    <h3>Práctica profesional de Maestría</h3>
-    <div class="org">Instituto de Estudios Internacionales · Universidad de Chile</div>
-    <div class="meta">2022</div>
-    <p>Formulación de un Plan Estratégico de Internacionalización para universidades iberoamericanas vinculadas al Diplomado en Políticas Públicas Globales.</p>
-  </div>
-  <div class="item">
-    <h3>Práctica profesional de Pregrado</h3>
-    <div class="org">Instituto de Estudios Internacionales · Universidad de Chile</div>
-    <div class="meta">2022</div>
-    <p>Revisión exhaustiva de literatura y elaboración de minutas sobre ONU-Hábitat I, II y III, en relación con la política urbano-habitacional de Chile.</p>
-  </div>
+  </article>
+  <article class="entry">
+    <div class="rail">2025</div>
+    <div>
+      <h3>Profesor invitado · Pregrado en Ciencia Política</h3>
+      <div class="org">Pontificia Universidad Católica de Chile</div>
+      <p>Cátedra sobre Teoría de las Relaciones Internacionales.</p>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">2025</div>
+    <div>
+      <h3>Docente de Magíster en Gobierno y Asuntos Públicos</h3>
+      <div class="org">Universidad Central de Chile</div>
+      <p>Cátedra sobre política pública y la incidencia del conflicto social y político.</p>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">2022 – 2024</div>
+    <div>
+      <h3>Colaborador en investigación y análisis de políticas públicas</h3>
+      <div class="org">Fundación Patagonia Azul</div>
+      <p>Colaboración directa con la Dirección de la fundación y articulación con experiencia internacional vinculada a Mission Blue. Investigación sobre derecho del mar, gobernanza oceánica y creación de áreas marinas protegidas en Chile.</p>
+      <div class="highlight">
+        <span class="hl-label">Destacado</span>
+        <p>Lideré la redacción de una columna en el diario El País sobre el “<em>multilateralismo y la vocación oceánica de Chile</em>”, primer país en Sudamérica y el segundo en el mundo en ratificar el acuerdo marco del alta mar (enero de 2024).</p>
+        <p class="pub-link"><a href="https://elpais.com/chile/2024-01-19/chile-reafirma-el-multilateralismo-a-traves-de-su-vocacion-oceanica-al-ser-el-primer-pais-en-ratificar-el-acuerdo-marco-del-alta-mar.html" target="_blank" rel="noopener">Ver columna</a></p>
+      </div>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">2022</div>
+    <div>
+      <h3>Práctica profesional de Maestría</h3>
+      <div class="org">Instituto de Estudios Internacionales · Universidad de Chile</div>
+      <p>Formulación de un Plan Estratégico de Internacionalización para universidades iberoamericanas vinculadas al Diplomado en Políticas Públicas Globales.</p>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">2022</div>
+    <div>
+      <h3>Práctica profesional de Pregrado</h3>
+      <div class="org">Instituto de Estudios Internacionales · Universidad de Chile</div>
+      <p>Revisión exhaustiva de literatura y elaboración de minutas sobre ONU-Hábitat I, II y III, en relación con la política urbano-habitacional de Chile.</p>
+    </div>
+  </article>
 </div></section>
 
 <section id="formacion"><div class="wrap">
   <h2>Formación académica</h2>
-  <div class="item future">
-    <h3>Magíster en Gobernanza de Riesgos y Recursos</h3>
-    <div class="org">Universität Heidelberg · Alemania</div>
-    <div class="meta">Grado en Alemania · Aceptado para cursar en 2027</div>
-  </div>
-  <div class="item">
-    <h3>Máster en Cooperación Internacional y Políticas Públicas para la Agenda 2030</h3>
-    <div class="org">Universidad Complutense de Madrid · España</div>
-    <div class="meta">Grado en España · 2021 – 2022 · Sobresaliente</div>
-  </div>
-  <div class="item">
-    <h3>Cientista Político, especialización en Relaciones Internacionales</h3>
-    <div class="org">Universidad Alberto Hurtado · Chile</div>
-    <div class="meta">Grado en Chile · 2018 – 2022 · Magna Cum Laude</div>
-  </div>
-  <div class="item">
-    <h3>Licenciado en Ciencia Política y Relaciones Internacionales</h3>
-    <div class="org">Universidad Alberto Hurtado · Chile</div>
-    <div class="meta">Grado en Chile · 2018 – 2022 · Magna Cum Laude</div>
-  </div>
-  <div class="item">
-    <h3>Bachiller en Ciencias Sociales</h3>
-    <div class="org">Universidad Alberto Hurtado · Chile</div>
-    <div class="meta">Grado en Chile · 2018 – 2020</div>
-  </div>
+  <article class="entry pending">
+    <div class="rail">Alemania</div>
+    <div>
+      <h3>Magíster en Gobernanza de Riesgos y Recursos</h3>
+      <div class="org">Universität Heidelberg</div>
+      <div class="meta">Aceptado para cursar en 2027</div>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">España</div>
+    <div>
+      <h3>Máster en Cooperación Internacional y Políticas Públicas para la Agenda 2030</h3>
+      <div class="org">Universidad Complutense de Madrid</div>
+      <div class="meta">2021 – 2022 · Sobresaliente</div>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">Chile</div>
+    <div>
+      <h3>Cientista Político, especialización en Relaciones Internacionales</h3>
+      <div class="org">Universidad Alberto Hurtado</div>
+      <div class="meta">2018 – 2022 · Magna Cum Laude</div>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">Chile</div>
+    <div>
+      <h3>Licenciado en Ciencia Política y Relaciones Internacionales</h3>
+      <div class="org">Universidad Alberto Hurtado</div>
+      <div class="meta">2018 – 2022 · Magna Cum Laude</div>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">Chile</div>
+    <div>
+      <h3>Bachiller en Ciencias Sociales</h3>
+      <div class="org">Universidad Alberto Hurtado</div>
+      <div class="meta">2018 – 2020</div>
+    </div>
+  </article>
 
   <div class="logo-row">
     <div class="logo-tile"><img src="logos/heidelberg.svg" alt="Universität Heidelberg" title="Universität Heidelberg · Alemania"></div>
@@ -286,40 +339,51 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
     <div class="logo-tile"><img src="logos/uah-wordmark.jpg" alt="Universidad Alberto Hurtado" title="Universidad Alberto Hurtado · Chile"></div>
   </div>
 
-  <div class="grid2" style="margin-top:44px">
+  <div class="grid2 mt">
     <div>
       <h3 class="sub">Diplomados</h3>
-      <div class="card">
-        <h3>Universidad de Santiago de Chile</h3>
-        <div class="meta">2022</div>
-        <ul class="plain" style="margin-top:6px">
-          <li>Nuevo Sistema de Cooperación Internacional</li>
-          <li>Modelos de Desarrollo y Sostenibilidad</li>
-          <li>Políticas Públicas para la Agenda 2030</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Instituto de Estudios Internacionales · U. de Chile</h3>
-        <div class="meta">2019</div>
-        <p>Diploma de Extensión en Estudios Internacionales</p>
-      </div>
+      <article class="entry">
+        <div class="rail">2022</div>
+        <div>
+          <h3>Universidad de Santiago de Chile</h3>
+          <ul class="plain">
+            <li>Nuevo Sistema de Cooperación Internacional</li>
+            <li>Modelos de Desarrollo y Sostenibilidad</li>
+            <li>Políticas Públicas para la Agenda 2030</li>
+          </ul>
+        </div>
+      </article>
+      <article class="entry">
+        <div class="rail">2019</div>
+        <div>
+          <h3>Diploma de Extensión en Estudios Internacionales</h3>
+          <div class="org">Instituto de Estudios Internacionales · U. de Chile</div>
+        </div>
+      </article>
     </div>
     <div>
       <h3 class="sub">Cursos y talleres</h3>
-      <div class="card">
-        <h3>Programa de Formación para el Fortalecimiento de las Capacidades en materia de Gobernanza de los Océanos</h3>
-        <div class="meta">Grupo Banco Mundial (PROBLUE) · 6 de mayo de 2024</div>
-        <p>Curso de aprendizaje en línea (módulos básicos), con la Universidad de Melbourne, la División de Asuntos Oceánicos y Derecho del Mar de la ONU, la FAO, la Autoridad Internacional de los Fondos Marinos y el CDMO.</p>
-        <p class="pub-link"><a href="diplomas/curso-gobernanza-oceanos.pdf" target="_blank" rel="noopener">Ver diploma</a></p>
-      </div>
-      <div class="card">
-        <h3>FAO e-Learning Academy</h3>
-        <p>Comercio agrícola internacional: medidas no arancelarias y Acuerdos de la OMC.</p>
-      </div>
-      <div class="card">
-        <h3>Pontificia Universidad Católica de Chile</h3>
-        <p>Taller de Métodos Mixtos.</p>
-      </div>
+      <article class="entry">
+        <div class="rail">2024</div>
+        <div>
+          <h3>Programa de Formación para el Fortalecimiento de las Capacidades en materia de Gobernanza de los Océanos</h3>
+          <div class="org">Grupo Banco Mundial (PROBLUE)</div>
+          <p>Curso de aprendizaje en línea (módulos básicos), con la Universidad de Melbourne, la División de Asuntos Oceánicos y Derecho del Mar de la ONU, la FAO, la Autoridad Internacional de los Fondos Marinos y el CDMO.</p>
+          <p class="pub-link"><a href="diplomas/curso-gobernanza-oceanos.pdf" target="_blank" rel="noopener">Ver diploma</a></p>
+        </div>
+      </article>
+      <article class="entry">
+        <div>
+          <h3>FAO e-Learning Academy</h3>
+          <p>Comercio agrícola internacional: medidas no arancelarias y Acuerdos de la OMC.</p>
+        </div>
+      </article>
+      <article class="entry">
+        <div>
+          <h3>Pontificia Universidad Católica de Chile</h3>
+          <p>Taller de Métodos Mixtos.</p>
+        </div>
+      </article>
     </div>
   </div>
 </div></section>
@@ -327,43 +391,61 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
 <section id="publicaciones"><div class="wrap">
   <h2>Publicaciones e investigación</h2>
   <h3 class="sub">Publicaciones académicas</h3>
-  <div class="card">
-    <h3>El rol de la diplomacia científica de Chile como socio de desarrollo de ASEAN: oportunidades para el posicionamiento del país como puente hacia el Sudeste Asiático</h3>
-    <div class="meta">Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile</div>
-    <p class="pub-link"><a href="https://doi.org/10.5354/0719-3769.2025.77078" target="_blank" rel="noopener">DOI: 10.5354/0719-3769.2025.77078</a></p>
-  </div>
-  <div class="card">
-    <h3>La eficacia de la política exterior turquesa de Chile: ¿liderazgo efectivo o conceptual?</h3>
-    <div class="meta">Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile</div>
-    <p class="pub-link"><a href="https://doi.org/10.5354/0719-3769.2025.79647" target="_blank" rel="noopener">DOI: 10.5354/0719-3769.2025.79647</a></p>
-  </div>
-  <div class="card">
-    <h3>La política exterior azul: el proceso decisorio de la política pública de las áreas marinas protegidas de Chile, 2015-2023</h3>
-    <div class="meta">Capítulo de libro en <em>Ahora o nunca II: transformaciones ante el cambio climático en la era emergente</em>, Universidad Externado de Colombia</div>
-    <p class="pub-link"><a href="https://bdigital.uexternado.edu.co/challenge?next=%2Fentities%2Fpublication%2F437325e3-0138-42cf-97bd-5fa2ada6d65c" target="_blank" rel="noopener">Ver capítulo</a></p>
-  </div>
+  <article class="entry">
+    <div class="rail">Artículo</div>
+    <div>
+      <h3>El rol de la diplomacia científica de Chile como socio de desarrollo de ASEAN: oportunidades para el posicionamiento del país como puente hacia el Sudeste Asiático</h3>
+      <div class="meta">Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile</div>
+      <p class="pub-link"><a href="https://doi.org/10.5354/0719-3769.2025.77078" target="_blank" rel="noopener">DOI: 10.5354/0719-3769.2025.77078</a></p>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">Artículo</div>
+    <div>
+      <h3>La eficacia de la política exterior turquesa de Chile: ¿liderazgo efectivo o conceptual?</h3>
+      <div class="meta">Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile</div>
+      <p class="pub-link"><a href="https://doi.org/10.5354/0719-3769.2025.79647" target="_blank" rel="noopener">DOI: 10.5354/0719-3769.2025.79647</a></p>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">Capítulo</div>
+    <div>
+      <h3>La política exterior azul: el proceso decisorio de la política pública de las áreas marinas protegidas de Chile, 2015-2023</h3>
+      <div class="meta">Capítulo de libro en <em>Ahora o nunca II: transformaciones ante el cambio climático en la era emergente</em>, Universidad Externado de Colombia</div>
+      <p class="pub-link"><a href="https://bdigital.uexternado.edu.co/challenge?next=%2Fentities%2Fpublication%2F437325e3-0138-42cf-97bd-5fa2ada6d65c" target="_blank" rel="noopener">Ver capítulo</a></p>
+    </div>
+  </article>
 
-  <h3 class="sub" style="margin-top:36px">Investigación y contribuciones</h3>
-  <div class="card">
-    <h3>Ministerio de Relaciones Exteriores de Chile</h3>
-    <div class="meta">Adjudicatario del Concurso para el Desarrollo de Estudios de Política Exterior · 2024</div>
-    <p>Investigación: La diplomacia científica de Chile como socio de desarrollo de ASEAN: desafíos y oportunidades para el país como puente hacia el Sudeste Asiático.</p>
-    <p class="pub-link"><a href="https://www.mhnv.gob.cl/noticias/especialistas-presentan-innovador-proyecto-sobre-diplomacia-cientifica-y-conservacion" target="_blank" rel="noopener">Jornada de difusión en el Museo de Historia Natural de Valparaíso</a></p>
-    <p class="pub-link"><a href="https://www.youtube.com/watch?v=V_XcF1gd2m4" target="_blank" rel="noopener">Seminario de difusión en la Pontificia Universidad Católica de Chile</a></p>
-  </div>
-  <div class="card">
-    <h3>Intergovernmental Oceanographic Commission of UNESCO</h3>
-    <div class="meta">Presentación académica · 2024</div>
-    <p>Exposición del póster “O’Higgins Seamount”.</p>
-    <p class="pub-link"><a href="https://www.canva.com/design/DAF0z6NWOgc/4x0VL9xqud06G3xIXbQ4ww/view" target="_blank" rel="noopener">Ver póster</a></p>
-    <p class="pub-link"><a href="https://twitter.com/Dgf_uchile/status/1775878176528269379?s=20" target="_blank" rel="noopener">Exposición de póster en Barcelona: Década de las Ciencias Oceánicas</a></p>
-  </div>
-  <div class="card">
-    <h3>Cátedra Internacional Alianza Pacífico</h3>
-    <div class="meta">Asistente y ponente · Santiago de Cali, Colombia · 24 y 25 de noviembre de 2022</div>
-    <p>VII Simposio Internacional sobre Relaciones entre América Latina y Asia Pacífico (136 horas). Organizado por la Universidad del Pacífico, la Universidad Iberoamericana, la Universidad Alberto Hurtado y la Pontificia Universidad Javeriana.</p>
-    <p class="pub-link"><a href="diplomas/simposio-alianza-pacifico.pdf" target="_blank" rel="noopener">Ver diploma</a></p>
-  </div>
+  <h3 class="sub mt">Investigación y contribuciones</h3>
+  <article class="entry">
+    <div class="rail">2024</div>
+    <div>
+      <h3>Ministerio de Relaciones Exteriores de Chile</h3>
+      <div class="meta">Adjudicatario del Concurso para el Desarrollo de Estudios de Política Exterior</div>
+      <p>Investigación: La diplomacia científica de Chile como socio de desarrollo de ASEAN: desafíos y oportunidades para el país como puente hacia el Sudeste Asiático.</p>
+      <p class="pub-link"><a href="https://www.mhnv.gob.cl/noticias/especialistas-presentan-innovador-proyecto-sobre-diplomacia-cientifica-y-conservacion" target="_blank" rel="noopener">Jornada de difusión en el Museo de Historia Natural de Valparaíso</a></p>
+      <p class="pub-link"><a href="https://www.youtube.com/watch?v=V_XcF1gd2m4" target="_blank" rel="noopener">Seminario de difusión en la Pontificia Universidad Católica de Chile</a></p>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">2024</div>
+    <div>
+      <h3>Intergovernmental Oceanographic Commission of UNESCO</h3>
+      <div class="meta">Presentación académica</div>
+      <p>Exposición del póster “O’Higgins Seamount”.</p>
+      <p class="pub-link"><a href="https://www.canva.com/design/DAF0z6NWOgc/4x0VL9xqud06G3xIXbQ4ww/view" target="_blank" rel="noopener">Ver póster</a></p>
+      <p class="pub-link"><a href="https://twitter.com/Dgf_uchile/status/1775878176528269379?s=20" target="_blank" rel="noopener">Exposición de póster en Barcelona: Década de las Ciencias Oceánicas</a></p>
+    </div>
+  </article>
+  <article class="entry">
+    <div class="rail">2022</div>
+    <div>
+      <h3>Cátedra Internacional Alianza Pacífico</h3>
+      <div class="meta">Asistente y ponente · Santiago de Cali, Colombia · 24 y 25 de noviembre de 2022</div>
+      <p>VII Simposio Internacional sobre Relaciones entre América Latina y Asia Pacífico (136 horas). Organizado por la Universidad del Pacífico, la Universidad Iberoamericana, la Universidad Alberto Hurtado y la Pontificia Universidad Javeriana.</p>
+      <p class="pub-link"><a href="diplomas/simposio-alianza-pacifico.pdf" target="_blank" rel="noopener">Ver diploma</a></p>
+    </div>
+  </article>
 </div></section>
 
 <section id="distinciones"><div class="wrap">
@@ -371,22 +453,31 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
   <div class="grid2">
     <div>
       <h3 class="sub">Distinciones</h3>
-      <div class="card">
-        <h3>Premio al Mérito Académico · 2023</h3>
-        <div class="meta">Universidad Alberto Hurtado</div>
-        <p>Primer lugar de la generación de pregrado en Ciencia Política y Relaciones Internacionales.</p>
-      </div>
+      <article class="entry">
+        <div class="rail">2023</div>
+        <div>
+          <h3>Premio al Mérito Académico</h3>
+          <div class="org">Universidad Alberto Hurtado</div>
+          <p>Primer lugar de la generación de pregrado en Ciencia Política y Relaciones Internacionales.</p>
+        </div>
+      </article>
     </div>
     <div>
       <h3 class="sub">Adscripciones</h3>
-      <div class="card">
-        <h3>World Bank Group · 2024</h3>
-        <p>Programa de formación para el fortalecimiento de capacidades en gobernanza de los océanos.</p>
-      </div>
-      <div class="card">
-        <h3>ECOP Chile · 2025</h3>
-        <p>Red Nacional de Early Career Ocean Professionals, vinculada al Decenio de las Ciencias Oceánicas de las Naciones Unidas 2021-2030.</p>
-      </div>
+      <article class="entry">
+        <div class="rail">2024</div>
+        <div>
+          <h3>World Bank Group</h3>
+          <p>Programa de formación para el fortalecimiento de capacidades en gobernanza de los océanos.</p>
+        </div>
+      </article>
+      <article class="entry">
+        <div class="rail">2025</div>
+        <div>
+          <h3>ECOP Chile</h3>
+          <p>Red Nacional de Early Career Ocean Professionals, vinculada al Decenio de las Ciencias Oceánicas de las Naciones Unidas 2021-2030.</p>
+        </div>
+      </article>
     </div>
   </div>
 </div></section>
@@ -403,13 +494,16 @@ footer{padding:28px 0;text-align:center;color:var(--muted);font-size:13px;border
     <input type="hidden" name="_subject" value="Nuevo mensaje desde tu página web">
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="table">
-    <button class="btn primary" type="submit">Enviar mensaje</button>
+    <button class="btn solid" type="submit">Enviar mensaje</button>
     <p class="form-status" role="status" aria-live="polite"></p>
   </form>
 </div></section>
 </main>
 
-<footer>© <span id="y"></span> Gonzalo Martínez-Vargas</footer>
+<footer><div class="wrap">
+  <span>© <span id="y"></span> Gonzalo Martínez-Vargas</span>
+  <span>Santiago de Chile</span>
+</div></footer>
 
 <script>
 document.getElementById('y').textContent = new Date().getFullYear();
@@ -426,10 +520,10 @@ document.getElementById('y').textContent = new Date().getFullYear();
 })();
 
 (function(){
-  var T = {"Perfil": "Profile", "Experiencia": "Experience", "Formación": "Education", "Publicaciones": "Publications", "Distinciones": "Honors", "Contacto": "Contact", "Descargar CV": "Download CV", "Cientista Político con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas en gobernanza, política exterior, derecho del mar y cooperación internacional.": "Political Scientist with experience in uni&shy;ver&shy;si&shy;ty teach&shy;ing, ap&shy;plied re&shy;search and the for&shy;mu&shy;la&shy;tion of stra&shy;te&shy;gic pro&shy;pos&shy;als in gov&shy;ern&shy;ance, for&shy;eign pol&shy;i&shy;cy, law of the sea and in&shy;ter&shy;na&shy;tion&shy;al co&shy;op&shy;er&shy;a&shy;tion.", "Perfil profesional": "Professional profile", "Cientista Político especializado en Relaciones Internacionales y Políticas Públicas, con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas. Su trayectoria integra gobernanza, política exterior, derecho del mar, sostenibilidad y cooperación internacional. Complementa su perfil con formación en inteligencia artificial aplicada a la creación de valor organizacional.": "Political Scientist specialized in International Relations and Public Policy, with experience in university teaching, applied research and the formulation of strategic proposals. A career that integrates governance, foreign policy, law of the sea, sustainability and international cooperation, complemented by training in artificial intelligence applied to organizational value creation.", "Áreas de especialización": "Areas of specialization", "Relaciones internacionales y política exterior": "International relations and foreign policy", "Gobernanza y análisis de políticas públicas": "Governance and public policy analysis", "Derecho del mar y gobernanza oceánica": "Law of the sea and ocean governance", "Sostenibilidad y Agenda 2030": "Sustainability and the 2030 Agenda", "IA aplicada a organizaciones": "AI applied to organizations", "Competencias clave": "Key skills", "Investigación y análisis estratégico": "Research and strategic analysis", "Formulación de propuestas y planes": "Drafting of proposals and plans", "Docencia universitaria": "University teaching", "Cooperación internacional": "International cooperation", "Síntesis de evidencia y elaboración de minutas": "Evidence synthesis and briefing notes", "Comunicación académica y ejecutiva": "Academic and executive communication", "Propuesta de valor": "Value proposition", "Perfil interdisciplinario orientado a conectar evidencia académica, análisis regulatorio y cooperación internacional con la formulación de soluciones para instituciones públicas, universidades, organizaciones de la sociedad civil y entidades vinculadas al desarrollo sostenible.": "Interdisciplinary profile focused on connecting academic evidence, regulatory analysis and international cooperation with the design of solutions for public institutions, universities, civil society organizations and entities linked to sustainable development.", "Experiencia profesional y académica": "Professional and academic experience", "Asistente Ejecutivo": "Executive Assistant", "Abril 2026 – Actualidad": "April 2026 – Present", "Gestiono los asuntos públicos y la relación con autoridades sectoriales, incluida la Subsecretaría de Agricultura, y hago seguimiento legislativo de los proyectos de ley del sector agropecuario con una plataforma de monitoreo de desarrollo propio. Coordino iniciativas conjuntas y documentos de posición, elaboro minutas, informes ejecutivos y correspondencia institucional para el Congreso Nacional, e impulso la automatización de procesos internos con herramientas de inteligencia artificial.": "I manage public affairs and relations with sector authorities, including the Undersecretariat of Agriculture, and monitor legislation on agricultural bills using a self-developed monitoring platform. I coordinate joint initiatives and position papers, draft briefing notes, executive reports and institutional correspondence for the National Congress, and drive the automation of internal processes with artificial intelligence tools.", "Profesor invitado · Pregrado en Ciencia Política": "Guest Professor · Undergraduate Program in Political Science", "Cátedra sobre Teoría de las Relaciones Internacionales.": "Lecture course on International Relations Theory.", "Docente de Magíster en Gobierno y Asuntos Públicos": "Lecturer, Master's in Government and Public Affairs", "Cátedra sobre política pública y la incidencia del conflicto social y político.": "Lecture course on public policy and the impact of social and political conflict.", "Colaborador en investigación y análisis de políticas públicas": "Research and Public Policy Analysis Collaborator", "Colaboración directa con la Dirección de la fundación y articulación con experiencia internacional vinculada a Mission Blue. Investigación sobre derecho del mar, gobernanza oceánica y creación de áreas marinas protegidas en Chile.": "Direct collaboration with the foundation's Directorate and liaison with international expertise linked to Mission Blue. Research on the law of the sea, ocean governance and the creation of marine protected areas in Chile.", "Lideré la redacción de una columna en el diario El País sobre el “multilateralismo y la vocación oceánica de Chile”, primer país en Sudamérica y el segundo en el mundo en ratificar el acuerdo marco del alta mar (enero de 2024).": "I led the writing of a column in the newspaper El País on “<em>multilateralism and Chile's ocean vocation</em>”, the first country in South America and the second in the world to ratify the high seas framework agreement (January 2024).", "Ver columna": "View column", "Nombre": "Name", "Correo electrónico": "Email", "Mensaje": "Message", "Enviar mensaje": "Send message", "Seminario de difusión en la Pontificia Universidad Católica de Chile": "Dissemination seminar at the Pontificia Universidad Católica de Chile", "Jornada de difusión en el Museo de Historia Natural de Valparaíso": "Dissemination event at the Valparaíso Natural History Museum", "Exposición de póster en Barcelona: Década de las Ciencias Oceánicas": "Poster presentation in Barcelona: Decade of Ocean Sciences", "Destacado": "Highlight", "Práctica profesional de Maestría": "Master's Professional Internship", "Instituto de Estudios Internacionales · Universidad de Chile": "Institute of International Studies · Universidad de Chile", "Formulación de un Plan Estratégico de Internacionalización para universidades iberoamericanas vinculadas al Diplomado en Políticas Públicas Globales.": "Design of a Strategic Internationalization Plan for Ibero-American universities linked to the Diploma in Global Public Policy.", "Práctica profesional de Pregrado": "Undergraduate Professional Internship", "Revisión exhaustiva de literatura y elaboración de minutas sobre ONU-Hábitat I, II y III, en relación con la política urbano-habitacional de Chile.": "Comprehensive literature review and drafting of briefing notes on UN-Habitat I, II and III, in relation to Chile's urban and housing policy.", "Formación académica": "Education", "Magíster en Gobernanza de Riesgos y Recursos": "Master's in Risk and Resource Governance", "Universität Heidelberg · Alemania": "Universität Heidelberg · Germany", "Grado en Alemania · Aceptado para cursar en 2027": "Degree in Germany · Accepted to begin in 2027", "Máster en Cooperación Internacional y Políticas Públicas para la Agenda 2030": "Master's in International Cooperation and Public Policy for the 2030 Agenda", "Universidad Complutense de Madrid · España": "Universidad Complutense de Madrid · Spain", "Grado en España · 2021 – 2022 · Sobresaliente": "Degree in Spain · 2021 – 2022 · Sobresaliente (Outstanding)", "Cientista Político, especialización en Relaciones Internacionales": "Political Scientist, specializing in International Relations", "Grado en Chile · 2018 – 2022 · Magna Cum Laude": "Degree in Chile · 2018 – 2022 · Magna Cum Laude", "Licenciado en Ciencia Política y Relaciones Internacionales": "Bachelor's (Licenciatura) in Political Science and International Relations", "Bachiller en Ciencias Sociales": "Bachelor's (Bachiller) in Social Sciences", "Grado en Chile · 2018 – 2020": "Degree in Chile · 2018 – 2020", "Diplomados": "Postgraduate diplomas", "Nuevo Sistema de Cooperación Internacional": "New International Cooperation System", "Modelos de Desarrollo y Sostenibilidad": "Development Models and Sustainability", "Políticas Públicas para la Agenda 2030": "Public Policy for the 2030 Agenda", "Instituto de Estudios Internacionales · U. de Chile": "Institute of International Studies · U. de Chile", "Diploma de Extensión en Estudios Internacionales": "Extension Diploma in International Studies", "Cursos y talleres": "Courses and workshops", "Programa de Formación para el Fortalecimiento de las Capacidades en materia de Gobernanza de los Océanos": "Training Program for Strengthening Capacities in Ocean Governance", "Grupo Banco Mundial (PROBLUE) · 6 de mayo de 2024": "World Bank Group (PROBLUE) · May 6, 2024", "Curso de aprendizaje en línea (módulos básicos), con la Universidad de Melbourne, la División de Asuntos Oceánicos y Derecho del Mar de la ONU, la FAO, la Autoridad Internacional de los Fondos Marinos y el CDMO.": "Online learning course (basic modules), with the University of Melbourne, the UN Division for Ocean Affairs and the Law of the Sea, FAO, the International Seabed Authority and CDMO.", "Ver diploma": "View certificate", "Comercio agrícola internacional: medidas no arancelarias y Acuerdos de la OMC.": "International agricultural trade: non-tariff measures and WTO Agreements.", "Taller de Métodos Mixtos.": "Mixed Methods Workshop.", "Publicaciones e investigación": "Publications and research", "Publicaciones académicas": "Academic publications", "El rol de la diplomacia científica de Chile como socio de desarrollo de ASEAN: oportunidades para el posicionamiento del país como puente hacia el Sudeste Asiático": "The role of Chile's science diplomacy as a development partner of ASEAN: opportunities for positioning the country as a bridge to Southeast Asia", "Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile": "Journal Estudios Internacionales, Institute of International Studies, Universidad de Chile · In Spanish", "La política exterior azul: el proceso decisorio de la política pública de las áreas marinas protegidas de Chile, 2015-2023": "Blue foreign policy: the decision-making process of public policy on Chile's marine protected areas, 2015-2023", "Capítulo de libro en Ahora o nunca II: transformaciones ante el cambio climático en la era emergente, Universidad Externado de Colombia": "Book chapter in <em>Ahora o nunca II: transformaciones ante el cambio climático en la era emergente</em>, Universidad Externado de Colombia · In Spanish", "Ver capítulo": "View chapter", "La eficacia de la política exterior turquesa de Chile: ¿liderazgo efectivo o conceptual?": "The effectiveness of Chile's turquoise foreign policy: effective or conceptual leadership?", "Investigación y contribuciones": "Research and contributions", "Ministerio de Relaciones Exteriores de Chile": "Ministry of Foreign Affairs of Chile", "Adjudicatario del Concurso para el Desarrollo de Estudios de Política Exterior · 2024": "Awardee of the Competition for the Development of Foreign Policy Studies · 2024", "Investigación: La diplomacia científica de Chile como socio de desarrollo de ASEAN: desafíos y oportunidades para el país como puente hacia el Sudeste Asiático.": "Research: Chile's science diplomacy as a development partner of ASEAN: challenges and opportunities for the country as a bridge to Southeast Asia.", "Presentación académica · 2024": "Academic presentation · 2024", "Exposición del póster “O’Higgins Seamount”.": "Presentation of the poster “O’Higgins Seamount”.", "Ver póster": "View poster", "Cátedra Internacional Alianza Pacífico": "Pacific Alliance International Chair", "Asistente y ponente · Santiago de Cali, Colombia · 24 y 25 de noviembre de 2022": "Attendee and speaker · Santiago de Cali, Colombia · November 24–25, 2022", "VII Simposio Internacional sobre Relaciones entre América Latina y Asia Pacífico (136 horas). Organizado por la Universidad del Pacífico, la Universidad Iberoamericana, la Universidad Alberto Hurtado y la Pontificia Universidad Javeriana.": "VII International Symposium on Latin America–Asia Pacific Relations (136 hours). Organized by Universidad del Pacífico, Universidad Iberoamericana, Universidad Alberto Hurtado and Pontificia Universidad Javeriana.", "Distinciones y adscripciones": "Honors and affiliations", "Premio al Mérito Académico · 2023": "Academic Merit Award · 2023", "Primer lugar de la generación de pregrado en Ciencia Política y Relaciones Internacionales.": "First place in the undergraduate class in Political Science and International Relations.", "Adscripciones": "Affiliations", "Programa de formación para el fortalecimiento de capacidades en gobernanza de los océanos.": "Training program for strengthening capacities in ocean governance.", "Red Nacional de Early Career Ocean Professionals, vinculada al Decenio de las Ciencias Oceánicas de las Naciones Unidas 2021-2030.": "National network of Early Career Ocean Professionals, linked to the United Nations Decade of Ocean Science 2021-2030."};
+  var T = {"Perfil": "Profile", "Experiencia": "Experience", "Formación": "Education", "Publicaciones": "Publications", "Distinciones": "Honors", "Contacto": "Contact", "Descargar CV": "Download CV", "Saltar al contenido": "Skip to content", "Santiago de Chile": "Santiago, Chile", "Cientista Político con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas en gobernanza, política exterior, derecho del mar y cooperación internacional.": "Political Scientist with experience in uni&shy;ver&shy;si&shy;ty teach&shy;ing, ap&shy;plied re&shy;search and the for&shy;mu&shy;la&shy;tion of stra&shy;te&shy;gic pro&shy;pos&shy;als in gov&shy;ern&shy;ance, for&shy;eign pol&shy;i&shy;cy, law of the sea and in&shy;ter&shy;na&shy;tion&shy;al co&shy;op&shy;er&shy;a&shy;tion.", "Perfil profesional": "Professional profile", "Cientista Político especializado en Relaciones Internacionales y Políticas Públicas, con experiencia en docencia universitaria, investigación aplicada y formulación de propuestas estratégicas. Su trayectoria integra gobernanza, política exterior, derecho del mar, sostenibilidad y cooperación internacional. Complementa su perfil con formación en inteligencia artificial aplicada a la creación de valor organizacional.": "Political Scientist specialized in International Relations and Public Policy, with experience in university teaching, applied research and the formulation of strategic proposals. A career that integrates governance, foreign policy, law of the sea, sustainability and international cooperation, complemented by training in artificial intelligence applied to organizational value creation.", "Áreas de especialización": "Areas of specialization", "Relaciones internacionales y política exterior": "International relations and foreign policy", "Gobernanza y análisis de políticas públicas": "Governance and public policy analysis", "Derecho del mar y gobernanza oceánica": "Law of the sea and ocean governance", "Sostenibilidad y Agenda 2030": "Sustainability and the 2030 Agenda", "IA aplicada a organizaciones": "AI applied to organizations", "Competencias clave": "Key skills", "Investigación y análisis estratégico": "Research and strategic analysis", "Formulación de propuestas y planes": "Drafting of proposals and plans", "Docencia universitaria": "University teaching", "Cooperación internacional": "International cooperation", "Síntesis de evidencia y elaboración de minutas": "Evidence synthesis and briefing notes", "Comunicación académica y ejecutiva": "Academic and executive communication", "Propuesta de valor": "Value proposition", "Perfil interdisciplinario orientado a conectar evidencia académica, análisis regulatorio y cooperación internacional con la formulación de soluciones para instituciones públicas, universidades, organizaciones de la sociedad civil y entidades vinculadas al desarrollo sostenible.": "Interdisciplinary profile focused on connecting academic evidence, regulatory analysis and international cooperation with the design of solutions for public institutions, universities, civil society organizations and entities linked to sustainable development.", "Experiencia profesional y académica": "Professional and academic experience", "Asistente Ejecutivo": "Executive Assistant", "Abril 2026 – Actualidad": "April 2026 – Present", "Gestiono los asuntos públicos y la relación con autoridades sectoriales, incluida la Subsecretaría de Agricultura, y hago seguimiento legislativo de los proyectos de ley del sector agropecuario con una plataforma de monitoreo de desarrollo propio. Coordino iniciativas conjuntas y documentos de posición, elaboro minutas, informes ejecutivos y correspondencia institucional para el Congreso Nacional, e impulso la automatización de procesos internos con herramientas de inteligencia artificial.": "I manage public affairs and relations with sector authorities, including the Undersecretariat of Agriculture, and monitor legislation on agricultural bills using a self-developed monitoring platform. I coordinate joint initiatives and position papers, draft briefing notes, executive reports and institutional correspondence for the National Congress, and drive the automation of internal processes with artificial intelligence tools.", "Profesor invitado · Pregrado en Ciencia Política": "Guest Professor · Undergraduate Program in Political Science", "Cátedra sobre Teoría de las Relaciones Internacionales.": "Lecture course on International Relations Theory.", "Docente de Magíster en Gobierno y Asuntos Públicos": "Lecturer, Master's in Government and Public Affairs", "Cátedra sobre política pública y la incidencia del conflicto social y político.": "Lecture course on public policy and the impact of social and political conflict.", "Colaborador en investigación y análisis de políticas públicas": "Research and Public Policy Analysis Collaborator", "Colaboración directa con la Dirección de la fundación y articulación con experiencia internacional vinculada a Mission Blue. Investigación sobre derecho del mar, gobernanza oceánica y creación de áreas marinas protegidas en Chile.": "Direct collaboration with the foundation's Directorate and liaison with international expertise linked to Mission Blue. Research on the law of the sea, ocean governance and the creation of marine protected areas in Chile.", "Lideré la redacción de una columna en el diario El País sobre el “multilateralismo y la vocación oceánica de Chile”, primer país en Sudamérica y el segundo en el mundo en ratificar el acuerdo marco del alta mar (enero de 2024).": "I led the writing of a column in the newspaper El País on “<em>multilateralism and Chile's ocean vocation</em>”, the first country in South America and the second in the world to ratify the high seas framework agreement (January 2024).", "Ver columna": "View column", "Nombre": "Name", "Correo electrónico": "Email", "Mensaje": "Message", "Enviar mensaje": "Send message", "Seminario de difusión en la Pontificia Universidad Católica de Chile": "Dissemination seminar at the Pontificia Universidad Católica de Chile", "Jornada de difusión en el Museo de Historia Natural de Valparaíso": "Dissemination event at the Valparaíso Natural History Museum", "Exposición de póster en Barcelona: Década de las Ciencias Oceánicas": "Poster presentation in Barcelona: Decade of Ocean Sciences", "Destacado": "Highlight", "Práctica profesional de Maestría": "Master's Professional Internship", "Instituto de Estudios Internacionales · Universidad de Chile": "Institute of International Studies · Universidad de Chile", "Formulación de un Plan Estratégico de Internacionalización para universidades iberoamericanas vinculadas al Diplomado en Políticas Públicas Globales.": "Design of a Strategic Internationalization Plan for Ibero-American universities linked to the Diploma in Global Public Policy.", "Práctica profesional de Pregrado": "Undergraduate Professional Internship", "Revisión exhaustiva de literatura y elaboración de minutas sobre ONU-Hábitat I, II y III, en relación con la política urbano-habitacional de Chile.": "Comprehensive literature review and drafting of briefing notes on UN-Habitat I, II and III, in relation to Chile's urban and housing policy.", "Formación académica": "Education", "Alemania": "Germany", "España": "Spain", "Magíster en Gobernanza de Riesgos y Recursos": "Master's in Risk and Resource Governance", "Aceptado para cursar en 2027": "Accepted to begin in 2027", "Máster en Cooperación Internacional y Políticas Públicas para la Agenda 2030": "Master's in International Cooperation and Public Policy for the 2030 Agenda", "2021 – 2022 · Sobresaliente": "2021 – 2022 · Sobresaliente (Outstanding)", "Cientista Político, especialización en Relaciones Internacionales": "Political Scientist, specializing in International Relations", "Licenciado en Ciencia Política y Relaciones Internacionales": "Bachelor's (Licenciatura) in Political Science and International Relations", "Bachiller en Ciencias Sociales": "Bachelor's (Bachiller) in Social Sciences", "Diplomados": "Postgraduate diplomas", "Nuevo Sistema de Cooperación Internacional": "New International Cooperation System", "Modelos de Desarrollo y Sostenibilidad": "Development Models and Sustainability", "Políticas Públicas para la Agenda 2030": "Public Policy for the 2030 Agenda", "Instituto de Estudios Internacionales · U. de Chile": "Institute of International Studies · U. de Chile", "Diploma de Extensión en Estudios Internacionales": "Extension Diploma in International Studies", "Cursos y talleres": "Courses and workshops", "Programa de Formación para el Fortalecimiento de las Capacidades en materia de Gobernanza de los Océanos": "Training Program for Strengthening Capacities in Ocean Governance", "Grupo Banco Mundial (PROBLUE)": "World Bank Group (PROBLUE)", "Curso de aprendizaje en línea (módulos básicos), con la Universidad de Melbourne, la División de Asuntos Oceánicos y Derecho del Mar de la ONU, la FAO, la Autoridad Internacional de los Fondos Marinos y el CDMO.": "Online learning course (basic modules), with the University of Melbourne, the UN Division for Ocean Affairs and the Law of the Sea, FAO, the International Seabed Authority and CDMO.", "Ver diploma": "View certificate", "Comercio agrícola internacional: medidas no arancelarias y Acuerdos de la OMC.": "International agricultural trade: non-tariff measures and WTO Agreements.", "Taller de Métodos Mixtos.": "Mixed Methods Workshop.", "Publicaciones e investigación": "Publications and research", "Publicaciones académicas": "Academic publications", "Artículo": "Journal article", "Capítulo": "Book chapter", "El rol de la diplomacia científica de Chile como socio de desarrollo de ASEAN: oportunidades para el posicionamiento del país como puente hacia el Sudeste Asiático": "The role of Chile's science diplomacy as a development partner of ASEAN: opportunities for positioning the country as a bridge to Southeast Asia", "Revista Estudios Internacionales, Instituto de Estudios Internacionales de la Universidad de Chile": "Journal Estudios Internacionales, Institute of International Studies, Universidad de Chile · In Spanish", "La política exterior azul: el proceso decisorio de la política pública de las áreas marinas protegidas de Chile, 2015-2023": "Blue foreign policy: the decision-making process of public policy on Chile's marine protected areas, 2015-2023", "Capítulo de libro en Ahora o nunca II: transformaciones ante el cambio climático en la era emergente, Universidad Externado de Colombia": "Book chapter in <em>Ahora o nunca II: transformaciones ante el cambio climático en la era emergente</em>, Universidad Externado de Colombia · In Spanish", "Ver capítulo": "View chapter", "La eficacia de la política exterior turquesa de Chile: ¿liderazgo efectivo o conceptual?": "The effectiveness of Chile's turquoise foreign policy: effective or conceptual leadership?", "Investigación y contribuciones": "Research and contributions", "Ministerio de Relaciones Exteriores de Chile": "Ministry of Foreign Affairs of Chile", "Adjudicatario del Concurso para el Desarrollo de Estudios de Política Exterior": "Awardee of the Competition for the Development of Foreign Policy Studies", "Investigación: La diplomacia científica de Chile como socio de desarrollo de ASEAN: desafíos y oportunidades para el país como puente hacia el Sudeste Asiático.": "Research: Chile's science diplomacy as a development partner of ASEAN: challenges and opportunities for the country as a bridge to Southeast Asia.", "Presentación académica": "Academic presentation", "Exposición del póster “O’Higgins Seamount”.": "Presentation of the poster “O’Higgins Seamount”.", "Ver póster": "View poster", "Cátedra Internacional Alianza Pacífico": "Pacific Alliance International Chair", "Asistente y ponente · Santiago de Cali, Colombia · 24 y 25 de noviembre de 2022": "Attendee and speaker · Santiago de Cali, Colombia · November 24–25, 2022", "VII Simposio Internacional sobre Relaciones entre América Latina y Asia Pacífico (136 horas). Organizado por la Universidad del Pacífico, la Universidad Iberoamericana, la Universidad Alberto Hurtado y la Pontificia Universidad Javeriana.": "VII International Symposium on Latin America–Asia Pacific Relations (136 hours). Organized by Universidad del Pacífico, Universidad Iberoamericana, Universidad Alberto Hurtado and Pontificia Universidad Javeriana.", "Distinciones y adscripciones": "Honors and affiliations", "Premio al Mérito Académico": "Academic Merit Award", "Primer lugar de la generación de pregrado en Ciencia Política y Relaciones Internacionales.": "First place in the undergraduate class in Political Science and International Relations.", "Adscripciones": "Affiliations", "Programa de formación para el fortalecimiento de capacidades en gobernanza de los océanos.": "Training program for strengthening capacities in ocean governance.", "Red Nacional de Early Career Ocean Professionals, vinculada al Decenio de las Ciencias Oceánicas de las Naciones Unidas 2021-2030.": "National network of Early Career Ocean Professionals, linked to the United Nations Decade of Ocean Science 2021-2030."};
   var ATTRS = [["#cv", "href", "cv-gonzalo-martinez-en.pdf"], ["#theme", "aria-label", "Change theme"], ["#theme", "title", "Change theme"], [".portrait img", "alt", "Portrait of Gonzalo Martínez-Vargas"], [".logo-tile img[src*='heidelberg']", "title", "Universität Heidelberg · Germany"], [".logo-tile img[src*='complutense']", "title", "Universidad Complutense de Madrid · Spain"], [".logo-tile img[src*='uah']", "title", "Universidad Alberto Hurtado · Chile"]];
-  var SEL = 'h2,h3,ul.plain li,.tag,.org,.meta,.hl-label,.fl,#cform button,a,p:not(.pub-link)';
-  function key(el){ return el.textContent.replace(/\u00ad/g,'').replace(/\s+/g,' ').trim(); }
+  var SEL = 'h2,h3,ul.plain li,.tag,.org,.meta,.rail,.hl-label,.fl,.skip,footer span,#cform button,a,p:not(.pub-link)';
+  function key(el){ return el.textContent.replace(/­/g,'').replace(/\s+/g,' ').trim(); }
   var root = document.documentElement, btn = document.getElementById('lang');
   var els = Array.prototype.filter.call(document.querySelectorAll(SEL), function(el){
     var k = key(el);
@@ -471,7 +565,7 @@ document.getElementById('y').textContent = new Date().getFullYear();
 })();
 
 (function(){
-  var links = Array.prototype.slice.call(document.querySelectorAll('nav a[href^="#"]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav ul a[href^="#"]'));
   function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); }); }
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function(entries){
